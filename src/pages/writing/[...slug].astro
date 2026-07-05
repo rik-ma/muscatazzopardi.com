@@ -1,0 +1,49 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('writing', ({ data }) => !data.draft);
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const monthYear = entry.data.date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+
+const wordCount = entry.body ? entry.body.trim().split(/\s+/).filter(Boolean).length : 0;
+const minutes = Math.max(1, Math.round(wordCount / 220));
+---
+
+<BaseLayout
+  title={`${entry.data.title} — Richard Muscat Azzopardi`}
+  description={entry.data.description}
+  ogImage={`/og/${entry.id}.png`}
+  ogType="article"
+  publishedTime={entry.data.date.toISOString()}
+  hideFooterRule
+>
+  <main id="main">
+    <article>
+      <header class="essay-head fade-up fade-up-1">
+        <h1 class="essay-title">{entry.data.title}</h1>
+        <p class="dateline">
+          <time datetime={entry.data.date.toISOString().slice(0, 7)}>{monthYear}</time> · {minutes} min read
+        </p>
+      </header>
+
+      <div class="essay-body fade-up fade-up-2">
+        <Content />
+      </div>
+    </article>
+
+    <div class="back-link-row">
+      <hr class="hairline" />
+      <p><a href="/writing" class="back-link"><span class="marker">/</span> Writing</a></p>
+    </div>
+  </main>
+</BaseLayout>

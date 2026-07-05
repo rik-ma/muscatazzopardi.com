@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="About me — Richard Muscat Azzopardi"
+  description="Richard Muscat Azzopardi is the CEO of Switch, a fractional CMO, a Vistage Chair, and a believer that kindness and growth are not a trade-off."
+>
+  <main id="main">
+    <header class="about-head fade-up fade-up-1">
+      <h1 class="about-title">About me</h1>
+    </header>
+
+    <!-- TODO: on-stage photo from Richard — Pattern 2 image-card, no caption -->
+
+    <div class="about-body fade-up fade-up-2">
+      <p>I&rsquo;m the CEO of <strong>Switch</strong>, a B2B brand and marketing consultancy I run with my brother Ed. I co-founded Switch Digital in 2013; in 2016 we merged with Switch to create a single unified agency, Switch - Digital &amp; Brand, which is still our official name today. In 2019 Ed and I bought out our two partners, and we&rsquo;ve run it together ever since.</p>
+
+      <p>The part of the Switch story I&rsquo;m proudest of is the transformation. We went from a 360&deg; agency serving every kind of client in Malta to a predominantly B2B consultancy working with brands that make a difference in the world around them, and in the past four years our clients went from Malta-only to mostly the UK and the US. We did it deliberately: a four-day work week, a fully remote team, and a culture where kindness is an operating principle rather than a poster in a kitchen.</p>
+
+      <p>None of that is incidental. One of my main goals in life is to prove that you can run successful businesses with kindness, and that the most sustainable businesses are a positive influence on their clients, their people, their communities, and the environment they operate in. Switch is my working proof.</p>
+
+      <p>Alongside Switch:</p>
+
+      <div class="credential-block">
+        <p><strong>I work as a fractional CMO and strategy consultant</strong> with a small number of owner-led manufacturing and technology companies, mostly in the US and the UK.</p>
+        <p><strong>I coach CFOs across the United States with Dope CFO</strong>, helping them build their own practices serving the cannabis industry.</p>
+        <p><strong>I&rsquo;ve been a Vistage member since 2018 and a Vistage Chair since 2023</strong>, spending part of every month helping a group of business leaders make better decisions and build companies worth being proud of.</p>
+        <p><strong>I completed Stanford Graduate School of Business&rsquo;s Executive Leadership Program in 2022</strong>, and I&rsquo;ve guest lectured on marketing at Northeastern University&rsquo;s D&rsquo;Amore-McKim School of Business since 2020.</p>
+        <p><strong>I sit on the Strategic Committee of <a href="https://icomagencies.com">ICOM</a></strong>, one of the world&rsquo;s largest networks of independent agencies.</p>
+      </div>
+
+      <p>Mentoring is the thread through all of it. Beyond the formal work, I regularly help people around me start and build businesses of their own, sustainably.</p>
+
+      <p>Before any of this, there was publishing: an internship at Allied Newspapers at seventeen, a media company co-founded at university and grown to seven titles before Malta&rsquo;s leading publisher acquired it, then marketing leadership roles at the Famalco Group and GFI Software. Everything I know about writing for real readers, and about how businesses actually work from the inside, started there.</p>
+
+      <p>Away from work, I live in Gozo with my wife Sarah, where we&rsquo;re slowly building a house. I write, I hike, I run (marathons included; I train for them regularly, with mixed grace), and I shoot street and architecture photography. I read a lot of philosophy, with a soft spot for the existentialists and the Stoics, though I&rsquo;ll make the case for the Epicureans and even the hedonists over a glass of wine. And I&rsquo;m a firm believer in buying for life rather than for the moment; one of my favourite conversations is how we can collectively choose better, consume better, and leave things better than we found them.</p>
+
+      <p>If any of that sounds like the start of a conversation, <a href="/contact">I&rsquo;d genuinely like to hear from you</a>.</p>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .about-head {
+    padding-top: clamp(2.5rem, 8vh, 5rem);
+    padding-bottom: clamp(2rem, 5vh, 3rem);
+  }
+  h1.about-title {
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: clamp(2.8rem, 7vw, 5.25rem);
+    letter-spacing: -0.035em;
+    line-height: 0.94;
+    margin: 0;
+    max-width: 18ch;
+    text-wrap: balance;
+    color: var(--fg);
+  }
+
+  .about-body {
+    max-width: 66ch;
+    padding-bottom: clamp(3rem, 8vh, 5rem);
+  }
+  .about-body p {
+    font-size: 1.1875rem;
+    line-height: 1.6;
+    margin: 0 0 1.4em 0;
+    color: var(--fg);
+  }
+  @media (max-width: 480px) {
+    .about-body p { font-size: 17px; }
+  }
+  .about-body strong { font-weight: 600; }
+  .about-body a {
+    color: var(--fg);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--fgSoft) 40%, transparent);
+    text-underline-offset: 0.15em;
+    transition: text-decoration-color 150ms ease-out;
+  }
+  .about-body a:hover { text-decoration-color: var(--acid); }
+
+  /* ---------- Credential block — workstreams-list spirit ----------
+     Bold lead-in phrase, normal-weight remainder, whitespace-separated.
+     No bullets, no hairlines, no numbers. */
+  .credential-block {
+    margin: 0 0 1.4em 0;
+  }
+  .credential-block p {
+    margin: 0 0 1.6em 0;
+  }
+  .credential-block p:last-child { margin-bottom: 1.4em; }
+  .credential-block strong { font-weight: 600; }
+</style>

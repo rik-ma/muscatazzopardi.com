@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const allEntries = await getCollection('playbooks', ({ data }) => !data.draft);
+const entries = allEntries.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout
+  title="Playbooks — Richard Muscat Azzopardi"
+  description="Open-sourced methods from paid engagements, written up so you can run them on your own firm."
+>
+  <main id="main">
+    <section class="writing-intro fade-up fade-up-1">
+      <h1 class="page-title">Playbooks</h1>
+      <div class="prose">
+        <p>These are the tools I actually use with clients, written up so you can run them on your own firm. Free, sources credited, no email wall. I publish the method instead of describing it, because that&rsquo;s the only version of &ldquo;trust me&rdquo; worth anything.</p>
+      </div>
+    </section>
+
+    <section class="writing-index fade-up fade-up-2">
+      {entries.map((entry) => (
+        <a href={`/playbooks/${entry.id}`} class="writing-item">
+          <span class="writing-title">{entry.data.title}</span>
+          <time class="writing-meta" datetime={entry.data.date.toISOString().slice(0, 7)}>
+            {entry.data.date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+          </time>
+        </a>
+      ))}
+    </section>
+  </main>
+</BaseLayout>

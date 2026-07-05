@@ -1,0 +1,188 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Newsletter from '../components/Newsletter.astro';
+import { getCollection } from 'astro:content';
+
+const allWriting = await getCollection('writing', ({ data }) => !data.draft);
+const writing = allWriting.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const dateFormatter = new Intl.DateTimeFormat('en', { month: 'short', year: 'numeric' });
+const isoMonth = (d: Date) => d.toISOString().slice(0, 7);
+---
+
+<BaseLayout
+  title="Richard Muscat Azzopardi"
+  description="Richard Muscat Azzopardi writes about marketing, strategy, and running a good business."
+>
+  <main id="main">
+    <section class="hero">
+      <h1 class="display-name fade-up fade-up-1">Richard Muscat Azzopardi</h1>
+      <div class="portrait-col fade-up fade-up-2">
+        <figure class="portrait-figure">
+          <img
+            src="/images/portrait.jpg"
+            width="1600"
+            height="1067"
+            alt="Richard Muscat Azzopardi"
+            loading="eager"
+          />
+        </figure>
+      </div>
+      <div class="prose-col fade-up fade-up-2">
+        <div class="prose">
+          <p>Hi, I&rsquo;m Rik.</p>
+          <p>I&rsquo;ve spent the last twenty years building businesses and helping other people build theirs. These days that means three things: I&rsquo;m the CEO of <a href="https://switch.com.mt">Switch</a>, a B2B brand and marketing consultancy I run with my brother Ed; I chair a <a href="https://vistage.com">Vistage</a> group of business leaders; and I work with a small number of US and UK companies as a strategy consultant, fractional CMO, and coach. Along the way I picked up an executive education at Stanford&rsquo;s Graduate School of Business, which still shapes how I think about strategy.</p>
+          <p>The thread running through all of it is a simple belief: growth and kindness are not a trade-off. The best businesses I&rsquo;ve worked with grow <em>because</em> of how they treat people, not in spite of it. One of my goals in life is to prove that, repeatedly.</p>
+          <p>I write about marketing, strategy, and what it actually takes to run a good business over in <a href="/writing">Writing</a>. If you&rsquo;d like to get in touch, <a href="/contact">here&rsquo;s how</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="thesis fade-up fade-up-3" aria-label="Thesis">
+      <p>Growth and <span class="accent">kindness</span> are not a trade-off.</p>
+    </section>
+
+    <section class="writing fade-up fade-up-4">
+      <h2 class="writing-label">Writing</h2>
+      {writing.map((entry) => (
+        <a href={`/writing/${entry.id}`} class="writing-item">
+          <span class="writing-title">{entry.data.title}</span>
+          <time class="writing-meta" datetime={isoMonth(entry.data.date)}>
+            {dateFormatter.format(entry.data.date)}
+          </time>
+        </a>
+      ))}
+    </section>
+
+    <Newsletter />
+  </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Richard Muscat Azzopardi',
+    alternateName: 'Rik',
+    jobTitle: 'CEO, Switch · Vistage Chair · Strategy consultant & fractional CMO',
+    alumniOf: {
+      '@type': 'CollegeOrUniversity',
+      name: 'Stanford University Graduate School of Business',
+    },
+    worksFor: {
+      '@type': 'Organization',
+      name: 'Switch',
+      url: 'https://switch.com.mt',
+    },
+    sameAs: [
+      'https://www.linkedin.com/in/richardmuscatazzopardi',
+      'https://switch.com.mt',
+      'https://icomagencies.com',
+    ],
+  })} />
+</BaseLayout>
+
+<style>
+  /* ---------- Hero: the cover ---------- */
+  .hero {
+    padding-top: clamp(1.5rem, 5vh, 4rem);
+    display: grid;
+    grid-template-columns: minmax(0, 57fr) minmax(0, 43fr);
+    grid-template-areas:
+      "name  photo"
+      "prose photo";
+    gap: 0 clamp(2rem, 5vw, 5rem);
+    align-items: start;
+  }
+  h1.display-name {
+    grid-area: name;
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: clamp(3.2rem, 9.5vw, 8.5rem);
+    letter-spacing: -0.045em;
+    line-height: 0.9;
+    margin: 0 0 2.5rem 0;
+    text-wrap: balance;
+    color: var(--fg);
+  }
+  .portrait-col { grid-area: photo; min-width: 0; }
+  .prose-col { grid-area: prose; min-width: 0; }
+
+  /* ---------- Portrait: hard rectangle, bleeds to the right edge ---------- */
+  .portrait-figure { margin: 0; }
+  .portrait-figure img {
+    display: block;
+    width: calc(100% + clamp(1.25rem, 4vw, 4.5rem));
+    height: auto;
+  }
+
+  @media (max-width: 760px) {
+    .hero {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "name"
+        "photo"
+        "prose";
+    }
+    h1.display-name { margin-bottom: 1.75rem; }
+    .portrait-figure { margin-bottom: 2rem; }
+    .portrait-figure img { width: calc(100% + clamp(1.25rem, 4vw, 4.5rem)); }
+  }
+
+  /* ---------- The thesis — a slide, not a paragraph ---------- */
+  .thesis {
+    padding-top: clamp(5rem, 14vh, 10rem);
+    padding-bottom: clamp(5rem, 14vh, 10rem);
+  }
+  .thesis p {
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: clamp(2.6rem, 7vw, 6rem);
+    letter-spacing: -0.035em;
+    line-height: 0.98;
+    margin: 0;
+    max-width: 18ch;
+    text-wrap: balance;
+    color: var(--fg);
+  }
+  .thesis .accent { color: var(--acid); }
+
+  /* ---------- Writing: titles and whitespace, nothing else ---------- */
+  .writing {
+    padding-bottom: clamp(4rem, 10vh, 7rem);
+  }
+  .writing-label {
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 1.0625rem;
+    color: var(--fgSoft);
+    margin: 0 0 2.75rem 0;
+  }
+  .writing-item {
+    display: block;
+    text-decoration: none;
+  }
+  .writing-item + .writing-item { margin-top: clamp(2.5rem, 6vh, 4rem); }
+  .writing-title {
+    display: block;
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: clamp(1.6rem, 3.2vw, 2.5rem);
+    letter-spacing: -0.025em;
+    line-height: 1.04;
+    color: var(--fg);
+    margin: 0 0 0.5rem 0;
+    max-width: 24ch;
+    text-wrap: balance;
+  }
+  .writing-item:hover .writing-title {
+    text-decoration: underline;
+    text-decoration-color: var(--acid);
+    text-decoration-thickness: 0.06em;
+    text-underline-offset: 0.12em;
+  }
+  .writing-meta {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--fgSoft);
+  }
+</style>

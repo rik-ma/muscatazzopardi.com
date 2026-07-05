@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const allEntries = await getCollection('writing', ({ data }) => !data.draft);
+const entries = allEntries.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout
+  title="Writing — Richard Muscat Azzopardi"
+  description="Essays on marketing, strategy, and running a business that people actually want to work for and buy from."
+>
+  <main id="main">
+    <section class="writing-intro fade-up fade-up-1">
+      <h1 class="page-title">Writing</h1>
+      <div class="prose">
+        <p>I write occasionally about marketing, strategy, and running businesses that people actually want to work for and buy from. Most of it comes from things I&rsquo;ve got wrong at least once first.</p>
+      </div>
+    </section>
+
+    <section class="writing-index fade-up fade-up-2">
+      {entries.map((entry) => (
+        <a href={`/writing/${entry.id}`} class="writing-item">
+          <span class="writing-title">{entry.data.title}</span>
+          <time class="writing-meta" datetime={entry.data.date.toISOString().slice(0, 7)}>
+            {entry.data.date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+          </time>
+        </a>
+      ))}
+    </section>
+  </main>
+</BaseLayout>

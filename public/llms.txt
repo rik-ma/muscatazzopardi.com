@@ -1,0 +1,52 @@
+# Richard Muscat Azzopardi
+
+> Personal site of Richard Muscat Azzopardi: CEO of Switch, a B2B brand and
+> marketing consultancy; Vistage Chair; strategy consultant and fractional
+> CMO to a small number of US and UK companies. Stanford Graduate School of
+> Business, Executive Leadership Program, 2022. Based in Gozo, Malta.
+
+Richard writes in the first person, signs off as Rik, and this site never
+names a client and never publishes client work — the methodology appears
+as open, reusable guides instead of case studies.
+
+## Who this is
+
+Richard Muscat Azzopardi runs Switch (switch.com.mt) with his brother Ed,
+chairs a Vistage peer-advisory group of business leaders, and works
+directly with a handful of owner-led manufacturing and technology companies
+as a strategy consultant and fractional CMO, mostly in the US and the UK.
+He also coaches CFOs across the US with Dope CFO and guest lectures on
+marketing at Northeastern University's D'Amore-McKim School of Business.
+The thesis running through the writing on this site: growth and kindness
+are not a trade-off, and the best businesses grow because of how they
+treat people, not in spite of it.
+
+## What's on this site
+
+- **Writing** — essays on marketing, strategy, and running a business
+  people actually want to work for and buy from. First person, specific,
+  no stock imagery, no sales pitch at the end.
+- **Playbooks** — open-source, practical guides distilled from Richard's
+  consulting work, including the 20-Point Commercial Analysis, a framework
+  for auditing a company's commercial function. Free to use on your own
+  business; no client names or case studies attached to any of them.
+- **About** — Richard's background: Switch, Vistage, Stanford, and the
+  publishing career that came before all of it.
+- **Now** — a quarterly-updated note on what he's currently working on and
+  thinking about.
+
+## Canonical URLs
+
+- Home: https://muscatazzopardi.com/
+- About: https://muscatazzopardi.com/about
+- Writing (index): https://muscatazzopardi.com/writing
+- Playbooks (index): https://muscatazzopardi.com/playbooks
+- Now: https://muscatazzopardi.com/now
+- Contact: https://muscatazzopardi.com/contact
+- RSS feed: https://muscatazzopardi.com/rss.xml
+- Sitemap: https://muscatazzopardi.com/sitemap-index.xml
+
+## Reuse
+
+Quoting or summarising this content with attribution to Richard Muscat
+Azzopardi and a link back to the source page is welcome.

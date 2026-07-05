@@ -1,0 +1,213 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Get in touch — Richard Muscat Azzopardi"
+  description="A standing invitation to get in touch with Richard Muscat Azzopardi."
+>
+  <main id="main">
+    <section class="page-head fade-up fade-up-1">
+      <h1 class="page-title">Get in touch</h1>
+    </section>
+
+    <section class="prose contact-body fade-up fade-up-2">
+      <p>I like hearing from people. Interesting problems, half-formed ideas, disagreements with something I&rsquo;ve written, or just a hello after we&rsquo;ve met somewhere; all of it is welcome.</p>
+
+      <!-- COPY DEVIATION vs v3: locked copy names Richard's raw email address and asks readers to email it directly. That address is intentionally omitted from this page's HTML (anti-harvesting decision from design-constitution-web.md §4 and §10) — the same standing-invitation sentiment is routed through the form below instead. — for Richard's review -->
+      <p>The best way to reach me is the form below. I read everything, and I reply to almost everything, though sometimes it takes me a few days.</p>
+
+      <!-- COPY DEVIATION vs v3: added sentence, not in locked copy, to give US/UK readers a concrete sense of response time across the time-zone gap. — for Richard's review -->
+      <p>I work from Gozo, six hours ahead of New York, which in practice means my answers are usually in your inbox before your morning coffee.</p>
+
+      <p>I&rsquo;m also on <a href="https://www.linkedin.com/in/richardmuscatazzopardi">LinkedIn</a>, where I&rsquo;m reasonably active.</p>
+
+      <p>If you&rsquo;re wondering whether your thing is worth emailing about, it probably is.</p>
+    </section>
+
+    <section class="contact-form-section fade-up fade-up-3" aria-label="Contact form">
+      <form id="contactForm" method="post" action="/api/contact">
+        <div class="field">
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+        <!-- Honeypot: hidden from sighted users and screen readers, bots tend to fill it -->
+        <div class="field hp-field" aria-hidden="true">
+          <label for="company" tabindex="-1">Company</label>
+          <input id="company" name="company" type="text" tabindex="-1" autocomplete="off">
+        </div>
+        <button type="submit" id="submitBtn">Send</button>
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .page-head {
+    padding-top: clamp(2.5rem, 8vh, 5rem);
+    padding-bottom: clamp(2.5rem, 6vh, 4rem);
+  }
+  h1.page-title {
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: clamp(2.8rem, 7vw, 5.25rem);
+    letter-spacing: -0.035em;
+    line-height: 0.94;
+    margin: 0;
+    max-width: 18ch;
+    text-wrap: balance;
+    color: var(--fg);
+  }
+  .contact-body {
+    padding-bottom: clamp(3rem, 8vh, 5rem);
+  }
+
+  .contact-form-section {
+    max-width: 34rem;
+    padding-bottom: clamp(4rem, 10vh, 7rem);
+  }
+  .contact-form-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .field label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    color: var(--fgSoft);
+  }
+  .field input,
+  .field textarea {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--fg);
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid color-mix(in srgb, var(--fgSoft) 40%, transparent);
+    padding: 0.6em 0;
+    border-radius: 0;
+    resize: vertical;
+    transition: border-color 150ms ease-out;
+  }
+  .field textarea {
+    min-height: 7.5em;
+  }
+  .field input:focus,
+  .field textarea:focus {
+    border-bottom-color: var(--fg);
+    outline: none;
+  }
+  .hp-field {
+    position: absolute;
+    width: 1px; height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  #submitBtn {
+    align-self: flex-start;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: var(--fg);
+    color: var(--paper);
+    border: none;
+    border-radius: 0;
+    padding: 0.85em 1.75em;
+    cursor: pointer;
+  }
+  #submitBtn:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+
+  .form-status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    margin: 0;
+    color: var(--fgSoft);
+    min-height: 1.2em;
+  }
+  .form-status[data-state="success"] { color: var(--fg); }
+  .form-status[data-state="error"] { color: var(--fg); }
+</style>
+
+<script is:inline>
+  (function () {
+    var form = document.getElementById('contactForm');
+    var status = document.getElementById('formStatus');
+    var btn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      status.textContent = '';
+      status.removeAttribute('data-state');
+
+      // form.name would return the form's own name attribute (the built-in
+      // IDL property shadows named controls), so read fields via elements.
+      var data = {
+        name: form.elements.namedItem('name').value.trim(),
+        email: form.elements.namedItem('email').value.trim(),
+        message: form.elements.namedItem('message').value.trim(),
+        company: form.elements.namedItem('company').value,
+      };
+
+      if (!data.name || !data.email || !data.message) {
+        status.textContent = 'Please fill in your name, email, and message.';
+        status.setAttribute('data-state', 'error');
+        return;
+      }
+
+      btn.disabled = true;
+      status.textContent = 'Sending…';
+
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+        .then(function (res) {
+          return res.json().then(function (body) {
+            return { ok: res.ok, body: body };
+          });
+        })
+        .then(function (result) {
+          btn.disabled = false;
+          if (result.ok) {
+            status.textContent = 'Thanks — that’s on its way to me. I’ll reply soon.';
+            status.setAttribute('data-state', 'success');
+            form.reset();
+          } else if (result.body && result.body.error === 'not configured') {
+            status.textContent = 'The contact form isn’t wired up yet. Please reach out on LinkedIn instead.';
+            status.setAttribute('data-state', 'error');
+          } else {
+            status.textContent = 'Something went wrong. Please try again or reach out on LinkedIn.';
+            status.setAttribute('data-state', 'error');
+          }
+        })
+        .catch(function () {
+          btn.disabled = false;
+          status.textContent = 'Something went wrong. Please try again or reach out on LinkedIn.';
+          status.setAttribute('data-state', 'error');
+        });
+    });
+  })();
+</script>

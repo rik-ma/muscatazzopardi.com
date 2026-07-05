@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Now — Richard Muscat Azzopardi"
+  description="What I’m focused on right now: work, what I’m thinking about, and life in Gozo."
+>
+  <main id="main">
+    <section class="page-head fade-up fade-up-1">
+      <h1 class="page-title">Now</h1>
+      <p class="dateline">Updated July 2026</p>
+    </section>
+
+    <section class="prose now-body fade-up fade-up-2">
+      <p><strong>Work.</strong> Deep in Switch&rsquo;s best year yet, with most of my attention on how B2B companies escape commoditisation. My Vistage group is at capacity and thriving. Taking on one new consulting engagement in the autumn, if it&rsquo;s the right one.</p>
+      <p><strong>Thinking about.</strong> How AI changes what buyers see before they ever speak to a company, and what that does to trust. Also, more prosaically, roof tiles.</p>
+      <p><strong>Life.</strong> Building a house in Gozo, slowly. Running and hiking whenever I can, which in Gozo is most of the time. Both the house and the running are teaching me the same lesson about patience, which I resent.</p>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .page-head {
+    padding-top: clamp(2.5rem, 8vh, 5rem);
+    padding-bottom: clamp(2.5rem, 6vh, 4rem);
+  }
+  h1.page-title {
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: clamp(2.8rem, 7vw, 5.25rem);
+    letter-spacing: -0.035em;
+    line-height: 0.94;
+    margin: 0 0 1.75rem 0;
+    color: var(--fg);
+  }
+  .dateline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--fgSoft);
+    margin: 0;
+  }
+  .now-body {
+    padding-bottom: clamp(4rem, 10vh, 7rem);
+  }
+  .now-body strong {
+    font-weight: 600;
+  }
+</style>

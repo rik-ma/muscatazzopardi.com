@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Page not found — Richard Muscat Azzopardi"
+  description="This page doesn’t exist. Head back to the homepage."
+>
+  <main id="main" class="not-found">
+    <h1>Nothing here.</h1>
+    <p>The page you were after has moved, or never existed. Worth double-checking the link.</p>
+    <p class="back-link-row"><a href="/" class="back-link"><span class="marker">/</span> Home</a></p>
+  </main>
+</BaseLayout>
+
+<style>
+  .not-found {
+    padding-top: clamp(4rem, 14vh, 9rem);
+    padding-bottom: clamp(4rem, 14vh, 9rem);
+  }
+  .not-found h1 {
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: clamp(2.8rem, 7vw, 5.25rem);
+    letter-spacing: -0.035em;
+    line-height: 0.94;
+    margin: 0 0 1.5rem 0;
+    color: var(--fg);
+  }
+  .not-found p {
+    font-size: 1.1875rem;
+    line-height: 1.6;
+    max-width: 60ch;
+    margin: 0 0 1.4em 0;
+    color: var(--fg);
+  }
+  @media (max-width: 480px) {
+    .not-found p { font-size: 17px; }
+  }
+  .back-link-row {
+    margin-top: 2.5rem;
+  }
+  .back-link {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 13px;
+    color: var(--fgSoft);
+    text-decoration: none;
+    transition: color 150ms ease-out;
+  }
+  .back-link:hover { color: var(--fg); }
+  .back-link .marker { color: var(--acid2); }
+</style>

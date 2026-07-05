@@ -1,0 +1,30 @@
+# muscatazzopardi.com
+# Everything on this site is written to be read, quoted, and reused —
+# by people and by the models that increasingly answer questions on their behalf.
+
+User-agent: *
+Allow: /
+
+# Explicitly welcome AI and research crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://muscatazzopardi.com/sitemap-index.xml

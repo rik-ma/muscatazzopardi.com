@@ -1,0 +1,93 @@
+---
+// Newsletter block — ported verbatim from mock-v3-home.html (.newsletter).
+// Markup and classes match the mock; styling lives in src/styles/global.css.
+// Wired to functions/api/subscribe.ts. No boxes, no toasts — status renders
+// as an inline mono line under the form, per design-constitution-web.md §10.
+---
+
+<section class="newsletter" aria-label="Newsletter">
+  <h2 class="newsletter-line">New essays by email, when they&rsquo;re written.</h2>
+  <form class="newsletter-form" id="newsletter-form" action="/api/subscribe" method="post">
+    <label class="visually-hidden" for="nl-email">Email address</label>
+    <input id="nl-email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required />
+    <!-- Honeypot: hidden from sighted users and screen readers; real visitors never fill it. -->
+    <input
+      type="text"
+      name="company"
+      id="nl-company"
+      class="visually-hidden"
+      tabindex="-1"
+      autocomplete="off"
+      aria-hidden="true"
+    />
+    <button type="submit">Subscribe</button>
+  </form>
+  <p class="newsletter-status" id="newsletter-status" role="status" aria-live="polite"></p>
+</section>
+
+<style>
+  .newsletter-status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--fgSoft);
+    margin: 1rem 0 0 0;
+    min-height: 1.5em;
+  }
+  .newsletter-status[data-state='success'] { color: var(--fg); }
+  .newsletter-status[data-state='error'] { color: var(--fg); }
+</style>
+
+<script>
+  (function () {
+    const form = document.getElementById('newsletter-form') as HTMLFormElement | null;
+    const status = document.getElementById('newsletter-status');
+    if (!form || !status) return;
+
+    const emailInput = document.getElementById('nl-email') as HTMLInputElement | null;
+    const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      if (!emailInput) return;
+
+      status.textContent = '';
+      status.removeAttribute('data-state');
+      if (submitBtn) submitBtn.disabled = true;
+
+      try {
+        const res = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: emailInput.value,
+            company: (form.elements.namedItem('company') as HTMLInputElement | null)?.value ?? '',
+          }),
+        });
+
+        const data = await res.json().catch(() => ({}));
+
+        if (res.ok) {
+          status.textContent = 'Done. You’ll hear from me when there’s something worth reading.';
+          status.setAttribute('data-state', 'success');
+          form.reset();
+        } else if (data && data.error === 'not configured') {
+          // Server code for a missing KV binding — write it for humans.
+          status.textContent = 'The signup isn’t wired up yet. Try again in a day or two.';
+          status.setAttribute('data-state', 'error');
+        } else if (res.status === 400 && data && data.error) {
+          // Validation errors from the Function are already written for humans.
+          status.textContent = data.error;
+          status.setAttribute('data-state', 'error');
+        } else {
+          status.textContent = 'Something went wrong. Try again in a moment.';
+          status.setAttribute('data-state', 'error');
+        }
+      } catch (err) {
+        status.textContent = 'Something went wrong. Try again in a moment.';
+        status.setAttribute('data-state', 'error');
+      } finally {
+        if (submitBtn) submitBtn.disabled = false;
+      }
+    });
+  })();
+</script>
