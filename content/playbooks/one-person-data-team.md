@@ -5,9 +5,17 @@ date: 2026-07-06
 draft: false
 ---
 
-There is a category of work every B2B business wants done and almost none can afford: research at scale. Which of the two thousand companies in your market are worth calling. Whether the contacts in your CRM still exist. Which certifications your competitors hold and which ones actually gate the work you want. Which prospects just got the planning consent or the contract award that means they're about to spend. Five years ago each of those was a data-team project with a data-team invoice. I now run all of them myself, in the background, while I do other work.
+There is a category of work every B2B business wants done and almost none can afford: research at scale. I know this from experience - both when we were trying to figure stuff out for ourselves and when we needed to help some of our clients, most of whom are small B2B brands themselves, too. 
+- Which of the two thousand companies in your market are worth calling? Or at least which should I call first? 
+- Do the contacts in your CRM still exist? 
+- Which certifications your competitors hold and which ones actually gate the work you want. 
+- Which prospects just got the planning consent or the contract award that means they're about to spend.
 
-The setup is one tool and a habit. The tool is an AI agent that can write and run code on your machine (I use Claude Code; any serious equivalent works). The habit is pointing it at public data instead of asking it to know things. Everything in this playbook runs on that combination, and most of it runs on free tiers.
+Five years ago each of those was a data-team project with a data-team invoice. I can now run all of them myself, in the background, while I do other work.
+
+And that's not all. I can now go through the results and sort them by relevance to my specific needs in a jiffy, too.
+
+The setup is one tool and a habit. The tool is an AI agent that can write and run code on your machine (I use Claude Code; any serious equivalent works). The habit is pointing it at public data instead of asking it to know things. Everything in this playbook runs on that combination, and most of it runs on free or low-priced tiers.
 
 <div class="pbd">
   <div class="pbd-3col">
@@ -86,7 +94,7 @@ This is the piece I now use for anything AI researches on my behalf, not just co
   </div>
 </div>
 
-One thing took me a while to understand: the second model catches hallucinations, but it cannot catch staleness, because two models reading the same three-year-old press release will both believe it. The dated-evidence rule catches staleness. On a measured comparison the two-model version came out at 78% verified-correct against 67% for one model alone, and found dozens of real buyers the single pass had missed, while the expensive frontier model only ever saw the contested fifth of the list.
+And as I've been working on this, I've been improving the process as I go along, too. For example one thing took me a while to understand: the second model catches hallucinations, but it cannot catch staleness, because two models reading the same three-year-old press release will both believe it. The dated-evidence rule catches staleness. On a measured comparison the two-model version came out at 78% verified-correct against 67% for one model alone, and found dozens of real buyers the single pass had missed, while the expensive frontier model only ever saw the contested fifth of the list.
 
 ## Scoring: deciding who gets your time
 
@@ -127,7 +135,7 @@ The useful part is that one scored list answers several different questions, eac
 
 ## The same setup, four other jobs
 
-**A competitor certification map.** For a manufacturer deciding which accreditations to invest in: which certifications does every competitor hold, and which ones actually gate the contracts worth winning? The certifiers publish public registers, so the discipline is registries before claims, claims before inference. Every cell in the finished matrix carries a source, a date, and one of four evidence tiers, from registry-confirmed down to not-found. This used to be a month of consultant time. It ran in the background over a few days, for a few euros of model spend.
+**A competitor certification map.** For a manufacturer deciding which accreditations to invest in: which certifications does every competitor hold, and which ones actually gate the contracts worth winning? The certifiers publish public registers, so the discipline is registries before claims, claims before inference. Every cell in the finished matrix carries a source, a date, and one of four evidence tiers, from registry-confirmed down to not-found. This used to be a month of consultant time. It ran in the background over a few days, for a few dollars of model spend.
 
 **Buying signals from public databases.** Static fit tells you who could buy; public data tells you when. Government planning databases record who just got consent to build, which for anyone supplying construction is a dated announcement of imminent spending. Public procurement portals record contract awards, and a fresh award means a winner standing up a supply chain. Filtering those feeds against a prospect list turned a database of 624 companies into a ranked call list of accounts with a live, sourced reason to talk this quarter.
 

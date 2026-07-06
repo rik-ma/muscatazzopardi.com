@@ -23,7 +23,7 @@ A fail looks like a page of crossed-out lines with nothing left standing. That r
 
 ## The stopwatch test
 
-Set a sixty-second timer. Say your positioning out loud, from memory, to someone outside your firm: who you're for, what you do for them, why you over the alternatives. If the buzzer catches you mid-sentence, or your first sentence needed a caveat, the claim is too foggy to survive contact with a market. Then the harder half. Ask your listener to repeat it back. Their one-sentence version is what your positioning actually is, whatever the deck says.
+Set a sixty-second timer. Say your positioning out loud, from memory, to someone outside your firm: who you're for, what you do for them, why you over the alternatives. If the buzzer catches you mid-sentence, or your first sentence needed a caveat, the claim is too foggy to survive contact with a market. Then the harder half. Ask your listener to repeat it back. Their one-sentence version is what your positioning actually is, not whatever the deck says.
 
 I once watched the managing partner of an engineering consultancy (a composite, before anyone asks) take four minutes on this, tour the firm's history since 1987, say "it depends" twice, and get back the summary "so... you do engineering?" That's a fail. So is any answer that needs slides. The whole test costs one minute plus the swallowing of some pride, and you can rerun it every quarter for nothing.
 
@@ -53,6 +53,6 @@ When you fail it, resist the urge to write more. The fix is subtraction: cut eve
 
 Run them in this order: the sameness scan first, because it's the cheapest and it stings fastest; the opposite test second; the stopwatch third; and "what would have to be true?" last, because it's the only one that generates homework. An afternoon covers the first three. Budget a week for the calls the fourth one demands.
 
-Credit where it belongs: the opposite test grew out of David C. Baker's waterfall of differentiation (his book *The Business of Expertise* is worth your time), and "what would have to be true?" belongs to Lafley and Martin. The stopwatch test and the sameness scan came out of my own workshops, though I doubt I'm the first person to time an executive or redact a logo. If you know who was, tell me and I'll credit them here.
+Credit where it belongs: the opposite test grew out of David C. Baker's waterfall of differentiation (his book *The Business of Expertise* is worth your time), and "what would have to be true?" belongs to Lafley and Martin. The stopwatch test and the sameness scan came out of my own workshops, and probably some version of sitting in brand workshops with Ed, though I doubt I'm the first person to time an executive or redact a logo. If you know who was, tell me and I'll credit them here.
 
 — Rik
