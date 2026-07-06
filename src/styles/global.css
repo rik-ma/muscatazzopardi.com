@@ -279,8 +279,9 @@ nav.primary-nav .current .marker { color: var(--acid2); }
   transition: border-color 150ms ease-out;
 }
 .newsletter-form input::placeholder { color: var(--fgSoft); }
-.newsletter-form input:focus { border-bottom-color: var(--fg); outline: none; }
-.newsletter-form input:focus-visible { outline: none; }
+/* Keyboard focus keeps the global acid outline (spec §9: visible square
+   focus states); the border swap alone isn't enough. */
+.newsletter-form input:focus { border-bottom-color: var(--fg); }
 .newsletter-form button {
   font-family: 'JetBrains Mono', monospace;
   font-size: 13px;

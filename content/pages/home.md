@@ -1,9 +1,26 @@
 ---
 page: home
-title: Thoughts // Actions
+browser-title: Richard Muscat Azzopardi
+# EDIT-THEN-SYNC. This file is the readable master of the Home page prose.
+# Edit it, tell Claude, and the words get ported into src/pages/index.astro
+# and redeployed.
+#
+# browser-title stays your full name for SEO/GEO (entity consolidation) —
+# it's the tab title and what Google/LLMs index, not what visitors see on
+# the page. The page itself now opens on the thesis line below, with your
+# name as a small signature under it ("Thoughts // Actions" idea resolved
+# this way: idea first for humans, name first for machines).
 ---
 
-## Intro
+## The thesis (the first thing on the page, set huge, "kindness" in colour)
+
+Growth and **kindness** are not a trade-off.
+
+## Signature (small, directly under the thesis — also the page's H1 for SEO)
+
+Richard Muscat Azzopardi
+
+## Intro (beside your portrait)
 
 Hi, I'm Rik.
 
@@ -11,8 +28,13 @@ I've spent the last twenty years building businesses and helping other people bu
 
 The thread running through all of it is a simple belief: growth and kindness are not a trade-off. The best businesses I've worked with grow *because* of how they treat their people and the world around them, not in spite of it. One of my goals in life is to prove that, repeatedly.
 
+<!-- Note: the paragraph above repeats the thesis line on purpose — the hero
+states it, this paragraph explains it (the manifesto move). If the echo bothers
+you, reword the opening clause here and tell Claude. -->
+
 I write about marketing, strategy, and what it actually takes to run a good business over in [Writing](/writing). If you'd like to get in touch, [here's how](/contact).
 
-## Thesis line (set huge, "kindness" is the accent word)
+## After the intro
 
-Growth and **kindness** are not a trade-off.
+The list of published essays (pulled automatically from content/essays), then
+the newsletter box and footer (their text lives in content/pages/site.md).

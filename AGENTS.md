@@ -92,6 +92,15 @@ footer in `BaseLayout.astro`, so it appears on every page (subscribe after
 reading any post). It is NOT in `index.astro` anymore. Its copy is mirrored in
 `content/pages/site.md`.
 
+**Home entrypoint (settled, round three):** the homepage opens on the THESIS
+line at display scale ("Growth and kindness are not a trade-off.", kindness in
+`--acid`), with "Richard Muscat Azzopardi" as the page `<h1>` styled as a small
+mono byline directly beneath it — idea first for humans, name first for
+machines (entity SEO: browser title, H1, and schema all carry the full name).
+The name is never set at display scale, and there is no separate mid-page
+thesis slide. Richard explicitly rejected leading with his own name. Details in
+design-constitution-web.md §7.
+
 ## How to add an essay
 
 1. Create `content/essays/<slug>.md` with frontmatter:

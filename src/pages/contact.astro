@@ -110,7 +110,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .field input:focus,
   .field textarea:focus {
     border-bottom-color: var(--fg);
-    outline: none;
+    /* Keyboard focus keeps the global acid outline (spec §9). */
   }
   .hp-field {
     position: absolute;
