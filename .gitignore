@@ -25,3 +25,7 @@ pnpm-debug.log*
 
 # QA artifacts
 qa/
+
+# local secret-drop for setting the Resend key (never committed)
+.resend-key.txt
+.wrangler/
