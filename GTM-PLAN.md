@@ -53,7 +53,7 @@ Four moves, in order of priority.
 
 ## 5. Essay pipeline
 
-The five launch essays are locked in the skeleton: the kindness thesis, the four-day week, commoditisation, the Vistage chairing piece, and "Buy it for life." From September 2026, one essay a month for twelve months, written in the provocation register of the Vistage sessions ("Every Yes Is a No"; "You are not busy. You are choosing this."). Rules carry over from the skeleton: 800 to 1,500 words, first person, at least one number or story per piece, no closing CTA.
+Launched 6 July 2026 with three essays live: the kindness thesis, the four-day week, and commoditisation. The Vistage chairing piece and "Buy it for life" from the original launch set move into the pipeline below. From August 2026, one essay a month, written in the provocation register of the Vistage sessions ("Every Yes Is a No"; "You are not busy. You are choosing this."). Rules carry over from the skeleton: 800 to 1,500 words, first person, at least one number or story per piece, no closing CTA.
 
 1. **Every yes is a no** (Sep 2026). The session argument on paper: every commitment carries a hidden no, and naming that no is what separates a designed year from an accumulated one.
 2. **Trust has a denominator** (Oct 2026). The Trust Equation, why self-orientation divides everything else you're good at, and the self-scores that surprise every room this gets run in.
@@ -74,6 +74,8 @@ Sequencing logic: each playbook (section 6) gets its companion essay one month a
 
 One per quarter, published complete and usable. A playbook that holds the good part back is a brochure, and readers know it.
 
+Two are live at launch: **"The one-person data team"** (the flagship: AI agents plus public data doing what used to need analysts — also his most shareable LinkedIn material, because the AI angle travels beyond the buyer audience) and **"Four tests for a positioning claim."** The pipeline from here:
+
 1. **The trust equation self-audit** (Q4 2026). The four dimensions, the scoring questions from the session, a worked example showing why the denominator dominates, and what to do about a high self-orientation score. A reader runs it on their most important client relationship in an hour.
 2. **Revenue segmentation and highest-LTV service mapping** (Q1 2027). Plot every service line by long-term relationship value on one axis and exposure to automation on the other; use the picture to decide where the next hire and the next marketing dollar go.
 3. **The competitive positioning map** (Q2 2027). Pull the public language of every named competitor, map the claims, find the position nobody holds, and write your own to occupy it. This is the method behind the "everyone sounds the same" essay, handed over in full.
@@ -85,7 +87,7 @@ The 20-Point Commercial Analysis gets separate treatment. Publish a definitive e
 
 **LinkedIn.** Each essay gets a post within 48 hours of publishing: a 150–250 word excerpt that stands on its own, in the essay's own voice, with the link. The per-essay OG images (generated in the site build, design-system styled) do all the visual work; no carousels, no quote graphics. Between essays, two or three short posts a month in the same register: a provocation, or an anonymised observation from a session. Re-share each essay once, roughly six months later, with a new opening line. Pick ten people whose audiences are his buyers (Vistage speakers, manufacturing voices, professional-services advisors) and be a consistently useful presence in their comments.
 
-**Newsletter.** The block says "New essays by email, when they're written," and that honesty is the whole differentiator: every competitor promises weekly and decays into silence or filler. Mechanics per the web addendum: Pages Function, double opt-in, send through Resend when an essay ships. No welcome sequence and no drip campaigns. The list is a room of people who asked to hear from him; treat it that way.
+**Newsletter.** The block says "New essays by email," and the send-only-when-written honesty is the differentiator: every competitor promises weekly and decays into silence or filler. Mechanics: signups land in Cloudflare KV today; sending goes through Resend Broadcasts (single opt-in per Richard's call, unsubscribe handled properly) and gets wired the first time there's an essay to send. No welcome sequence and no drip campaigns. The list is a room of people who asked to hear from him; treat it that way.
 
 **ICOM.** The Strategic Committee seat is standing access to independent agency owners worldwide. Offer the playbooks as resources for member agencies, propose a session on escaping commoditisation at an ICOM meeting, and let agencies refer clients who need strategy without delivery. There is no conflict: the personal practice sells no execution, and where execution is needed Switch is adjacent.
 
@@ -115,15 +117,43 @@ Ignore bounce rate and time on page (meaningless without the tracking he refuses
 
 ## 10. Horizons
 
-**12–18 month plan (to end 2027).** Site live by end of August 2026 with the five launch essays. One essay a month from September; the twelve in section 5 are the slate. Four playbooks published by Q3 2027, the 20-Point Commercial Analysis explainer live by October 2026. Bing Webmaster, Search Console, and llms.txt in place at launch. Vistage speaker application submitted by December 2026. The autumn engagement filled with the right client at the full fee. Call it 200 newsletter subscribers by mid-2027 (single opt-in, per Richard's call, with unsubscribe handled properly), and at least one qualified inbound conversation a month by the same point, logged by hand.
+**12–18 month plan (to end 2027).** Site went live 6 July 2026 (ahead of the August target) with three essays and two playbooks. One essay a month from August; the twelve in section 5 are the slate. Four playbooks published by Q3 2027, the 20-Point Commercial Analysis explainer live by October 2026. Bing Webmaster, Search Console, and llms.txt in place at launch. Vistage speaker application submitted by December 2026. The autumn engagement filled with the right client at the full fee. Call it 200 newsletter subscribers by mid-2027 (single opt-in, per Richard's call, with unsubscribe handled properly), and at least one qualified inbound conversation a month by the same point, logged by hand.
 
 **3-year strategy (to 2029).** The practice runs entirely on inbound: two or three fractional seats, the Dope CFO coaching, the chair work, and a short waiting list, with no cold proposals written. An archive of 30-plus essays and a complete playbook library do the selling. Photo essays are live and the Malta texture is doing its quiet work. Speaking twice a year to US or UK owner rooms. Fees reviewed against demand every January.
 
 **5-year vision (2031).** The kindness thesis has public proof: Switch's numbers plus documented transformations told as open method, never as named case studies. The practice is a recognised reference point for owner-led firms escaping commoditisation, and the essay archive is deep enough that a book is an editing job instead of a writing job. The house in Gozo is finished, the mornings still run six hours ahead of New York, and the practice never needed a funnel.
 
-## This month (July 2026)
+## The first 90 days (July–September 2026)
 
-1. Finish the production build against the v3 mocks.
-2. Draft the thesis essay ("You can run a successful business with kindness"); the site does not launch without it.
-3. Register Bing Webmaster Tools and Google Search Console; confirm Cloudflare Web Analytics is on.
-4. Start the inbound log as a plain text file. First entry: whoever emails next.
+The site is live, indexed, and instrumented. The launch-month checklist (build, thesis essay, Search Console, Bing, analytics) is done. What follows is the traffic plan: slow, compounding, no paid anything. The principle is that the site converts attention it doesn't generate, so the 90 days are about putting the name and the ideas into rooms and feeds where the buyers already are, one small repeatable action at a time.
+
+### The weekly rhythm (about 90 minutes, total)
+
+- **One LinkedIn post a week.** Rotate three types: an essay or playbook excerpt with the link (the OG card does the visual work), a provocation in the Vistage register, an anonymised observation from a session or engagement. Written like the essays: first person, one specific number or story, no hashtag salad.
+- **One useful comment a day, ten minutes.** On the ten-person list (section 7): Vistage speakers, manufacturing and professional-services voices whose audiences are the buyers. Substance only; a comment that could only come from someone who does the work.
+- **The inbound log, as things happen.** One line per inbound conversation in `C:\Claude\RMA\INBOUND-LOG.md`: date, who, how they found him, what they wanted. This is the KPI; everything else is weather.
+
+### July — seed the network
+
+1. **Profile plumbing, one sitting:** LinkedIn website field → muscatazzopardi.com; LinkedIn About section rewritten in the site's register with the time-zone line; email signature link; Switch team page links to the personal site; Vistage chair profile and Dope CFO bio carry the URL. Every one of these is a permanent drip of exactly-right visitors, and they also feed the entity consolidation in section 8.
+2. **The quiet launch post.** Not "I built a website": post the kindness thesis as an idea, with the essay link carrying it. The site should be discovered mid-thought.
+3. **Playbooks into the network.** Send "The one-person data team" personally to a handful of fellow Vistage chairs and ICOM contacts as something their members/agencies can use — a gift, not a broadcast.
+4. **Repo housekeeping:** the GitHub repo goes private (it holds this plan and the unpublished instrument).
+
+### August — establish the rhythm
+
+1. **Essay four ships** ("Every yes is a no" pulled forward, or the Vistage chairing piece — whichever is further along in his head), with its LinkedIn excerpt inside 48 hours.
+2. **First podcast pitch** per the section 7 criteria, proposing the one-person data team as the topic (the AI angle gets bookings right now).
+3. **Second LinkedIn pass on the flagship playbook** with a different opening — the certification-map example instead of the CRM example.
+
+### September — first review, first sends
+
+1. **Essay five ships**, same drill.
+2. **Wire Resend Broadcasts** and send the first newsletter issue to whatever the list holds by then, however small. The promise is "when they're written," so the habit starts with the first one written after the list existed.
+3. **First monthly metrics ritual** (section 9): twenty minutes on Cloudflare Web Analytics + Search Console queries + the inbound log. This sets the baseline the slow-but-surely gets measured against.
+4. **Second podcast pitch.** One a month, forever, is the pace.
+5. **Draft the 20-Point explainer** for its October slot.
+
+### What "working" looks like at day 90
+
+Not traffic numbers. Working is: six-plus LinkedIn posts published on schedule, five essays live, the profile plumbing all pointing home, one podcast recorded or booked, the first newsletter sent, and at least one line in the inbound log that traces back to something published rather than someone met. If the log stays empty of published-source entries at day 90, the content is fine and the distribution is under-powered: double the network sends before changing anything on the site.

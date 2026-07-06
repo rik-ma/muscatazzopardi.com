@@ -44,4 +44,20 @@ const minutes = Math.max(1, Math.round(wordCount / 220));
       <p><a href="/playbooks" class="back-link"><span class="marker">/</span> Playbooks</a></p>
     </div>
   </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: entry.data.title,
+    description: entry.data.description,
+    datePublished: entry.data.date.toISOString(),
+    image: new URL(`/og/${entry.id}.png`, Astro.site).toString(),
+    mainEntityOfPage: new URL(`/playbooks/${entry.id}/`, Astro.site).toString(),
+    author: {
+      '@type': 'Person',
+      name: 'Richard Muscat Azzopardi',
+      alternateName: 'Rik',
+      url: 'https://muscatazzopardi.com/about/',
+    },
+  })} />
 </BaseLayout>
