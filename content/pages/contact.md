@@ -11,12 +11,12 @@ I like hearing from people. Interesting problems, half-formed ideas, disagreemen
 
 <!-- [DEVIATION from your locked copy] Your original line named your email address
 and asked people to email you directly. We route through the form instead so the
-address isn't sitting in the page for spam bots to scrape. Same sentiment, safer. -->
+address isn't sitting in the page for spam bots to scrape. Same sentiment, safer. - RMA - ALL GOOD -->
 The best way to reach me is the form below. I read everything, and I reply to almost everything, though sometimes it takes me a few days.
 
 <!-- [DEVIATION — new line, not in your locked copy] Added to give US/UK readers a
 concrete sense of turnaround across the time-zone gap. Delete if you'd rather not. -->
-I work from Gozo, six hours ahead of New York, which in practice means my answers are usually in your inbox before your morning coffee.
+I'm based in Europe, and work from Gozo, a tiny and beautiful island in the Mediterranean sea. I'm six hours ahead of New York, which in practice means my answers are usually in your inbox before your morning coffee.
 
 I'm also on [LinkedIn](https://www.linkedin.com/in/richardmuscatazzopardi), where I'm reasonably active.
 

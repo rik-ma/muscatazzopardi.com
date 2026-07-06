@@ -9,7 +9,7 @@ title: Global text — newsletter, footer, contact form, 404
 
 ## Newsletter (now in the footer of every page)
 
-Heading: New essays by email, when they're written.
+Heading: New essays by email.
 Email placeholder: you@example.com
 Button: Subscribe
 Success message: Done. You'll hear from me when there's something worth reading.
@@ -30,7 +30,7 @@ Email label: Email
 Message label: Message
 Button: Send
 Sending message: Sending…
-Success message: Thanks — that's on its way to me. I'll reply soon.
+Success message: Thanks. That's on its way to me. I'll reply soon.
 Missing-fields message: Please fill in your name, email, and message.
 Not-yet-wired message: The contact form isn't wired up yet. Please reach out on LinkedIn instead.
 Error message: Something went wrong. Please try again or reach out on LinkedIn.

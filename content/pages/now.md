@@ -6,8 +6,8 @@ dateline: Updated July 2026
 # tell Claude, it ports into src/pages/now.astro. **bold** lead-ins are kept.
 ---
 
-**Work.** Deep in Switch's best year yet, with most of my attention on how B2B companies escape commoditisation. My Vistage group is at capacity and thriving. Taking on one new consulting engagement in the autumn, if it's the right one.
+**Work.** Deep in Switch's most exciting year yet, with most of my attention on how B2B companies escape commoditisation. My Vistage group is at capacity and thriving.
 
-**Thinking about.** How AI changes what buyers see before they ever speak to a company, and what that does to trust. Also, more prosaically, roof tiles.
+**Thinking about.** AI. How AI can speed up the menial work we do on a daily basis to free us up to do far more thinking. And about how AI changes what buyers see before they ever speak to a company, and what that does to trust.
 
-**Life.** Building a house in Gozo, slowly. Running and hiking whenever I can, which in Gozo is most of the time. Both the house and the running are teaching me the same lesson about patience, which I resent.
+**Life.** Building a house in Gozo, slowly. Running and hiking (or heading to the beach in Summer) whenever I can, which in Gozo is most of the time. Both the house and the running are teaching me the same lesson about patience, which I resent.

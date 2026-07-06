@@ -2,7 +2,7 @@
 title: "Run the 20-Point Commercial Analysis on your own firm"
 description: "The complete diagnostic I use at the start of commercial strategy engagements: twenty statements across four dimensions, scored 1 to 5 with your leadership team. Published in full, no email wall."
 date: 2026-07-05
-draft: false
+draft: true  # pulled from public site July 2026 — Switch IP, not a Rik giveaway (Richard's call)
 ---
 
 This is the diagnostic I run at the start of almost every commercial strategy engagement, published here in full. Twenty statements across four dimensions, each scored 1 to 5 by your leadership team, producing a mark out of 100 and, more usefully, a map of where your growth is stuck. I've spent about ten years refining it and I still open paid engagements with it, which makes giving it away look like a strange decision. It isn't. The questions were never the valuable part of the exercise. What matters is the honesty of the answers and what you do about them afterwards, and both of those are yours to supply whether I'm in the room or not.

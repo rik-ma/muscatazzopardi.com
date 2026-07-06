@@ -11,10 +11,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <h1 class="about-title">About me</h1>
     </header>
 
-    <!-- TODO: on-stage photo from Richard — Pattern 2 image-card, no caption -->
-
     <div class="about-body fade-up fade-up-2">
-      <p>I&rsquo;m the CEO of <strong>Switch</strong>, a B2B brand and marketing consultancy I run with my brother Ed. I co-founded Switch Digital in 2013; in 2016 we merged with Switch to create a single unified agency, Switch - Digital &amp; Brand, which is still our official name today. In 2019 Ed and I bought out our two partners, and we&rsquo;ve run it together ever since.</p>
+      <p>I&rsquo;m the CEO of <strong>Switch</strong>, a B2B brand and marketing consultancy I run with my brother Ed. I co-founded Switch Digital in 2013; in 2016 we merged with Switch to create a single unified agency. In 2019 Ed and I bought out our two partners, and we&rsquo;ve run it together ever since.</p>
 
       <p>The part of the Switch story I&rsquo;m proudest of is the transformation. We went from a 360&deg; agency serving every kind of client in Malta to a predominantly B2B consultancy working with brands that make a difference in the world around them, and in the past four years our clients went from Malta-only to mostly the UK and the US. We did it deliberately: a four-day work week, a fully remote team, and a culture where kindness is an operating principle rather than a poster in a kitchen.</p>
 
@@ -30,11 +28,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <p><strong>I sit on the Strategic Committee of <a href="https://icomagencies.com">ICOM</a></strong>, one of the world&rsquo;s largest networks of independent agencies.</p>
       </div>
 
+      <figure class="about-figure">
+        <img
+          src="/images/speaking.jpg"
+          width="1600"
+          height="1066"
+          alt="Richard Muscat Azzopardi speaking at an ICOM event in Porto"
+          loading="lazy"
+        />
+      </figure>
+
       <p>Mentoring is the thread through all of it. Beyond the formal work, I regularly help people around me start and build businesses of their own, sustainably.</p>
 
       <p>Before any of this, there was publishing: an internship at Allied Newspapers at seventeen, a media company co-founded at university and grown to seven titles before Malta&rsquo;s leading publisher acquired it, then marketing leadership roles at the Famalco Group and GFI Software. Everything I know about writing for real readers, and about how businesses actually work from the inside, started there.</p>
 
-      <p>Away from work, I live in Gozo with my wife Sarah, where we&rsquo;re slowly building a house. I write, I hike, I run (marathons included; I train for them regularly, with mixed grace), and I shoot street and architecture photography. I read a lot of philosophy, with a soft spot for the existentialists and the Stoics, though I&rsquo;ll make the case for the Epicureans and even the hedonists over a glass of wine. And I&rsquo;m a firm believer in buying for life rather than for the moment; one of my favourite conversations is how we can collectively choose better, consume better, and leave things better than we found them.</p>
+      <p>Away from work, I live in Gozo with my wife Sarah, where we&rsquo;re slowly (oh so slowly) building a house. I write, I hike, I run (very slow marathons included; I train for them regularly, with mixed grace), and I shoot street and architecture photography. I read a lot of philosophy, with a soft spot for the existentialists and the Stoics, though I&rsquo;ll make the case for the Epicureans and even the hedonists over a glass of wine. And I&rsquo;m a firm believer in buying for life rather than for the moment; one of my favourite conversations is how we can collectively choose better, consume better, and leave things better than we found them.</p>
 
       <p>If any of that sounds like the start of a conversation, <a href="/contact">I&rsquo;d genuinely like to hear from you</a>.</p>
     </div>
@@ -92,4 +100,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
   .credential-block p:last-child { margin-bottom: 1.4em; }
   .credential-block strong { font-weight: 600; }
+
+  /* Pattern 2 image-card: hard rectangle, no caption, breathing room */
+  .about-figure {
+    margin: clamp(2.5rem, 6vh, 4rem) 0;
+  }
+  .about-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
 </style>

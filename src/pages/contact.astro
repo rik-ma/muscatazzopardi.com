@@ -18,7 +18,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <p>The best way to reach me is the form below. I read everything, and I reply to almost everything, though sometimes it takes me a few days.</p>
 
       <!-- COPY DEVIATION vs v3: added sentence, not in locked copy, to give US/UK readers a concrete sense of response time across the time-zone gap. — for Richard's review -->
-      <p>I work from Gozo, six hours ahead of New York, which in practice means my answers are usually in your inbox before your morning coffee.</p>
+      <p>I&rsquo;m based in Europe, and work from Gozo, a tiny and beautiful island in the Mediterranean sea. I&rsquo;m six hours ahead of New York, which in practice means my answers are usually in your inbox before your morning coffee.</p>
 
       <p>I&rsquo;m also on <a href="https://www.linkedin.com/in/richardmuscatazzopardi">LinkedIn</a>, where I&rsquo;m reasonably active.</p>
 
@@ -192,7 +192,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         .then(function (result) {
           btn.disabled = false;
           if (result.ok) {
-            status.textContent = 'Thanks — that’s on its way to me. I’ll reply soon.';
+            status.textContent = 'Thanks. That’s on its way to me. I’ll reply soon.';
             status.setAttribute('data-state', 'success');
             form.reset();
           } else if (result.body && result.body.error === 'not configured') {
