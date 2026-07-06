@@ -32,3 +32,6 @@ qa/
 
 # local github token drop (never committed)
 .gh-token.txt
+
+# local cloudflare dns token drop (never committed)
+.cf-dns-token.txt

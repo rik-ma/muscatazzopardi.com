@@ -106,7 +106,7 @@ const isCurrent = (href: string) =>
                   <a href={item.href}>{item.label}</a>
                 )
               )}
-              <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light theme">Light</button>
+              <button type="button" class="theme-switch" id="themeToggle" role="switch" aria-checked="false" aria-label="Switch to light theme"><span class="thumb" aria-hidden="true"></span></button>
             </nav>
           </div>
         </header>
@@ -134,7 +134,8 @@ const isCurrent = (href: string) =>
         function sync() {
           var current = root.getAttribute('data-theme') || 'dark';
           var next = current === 'dark' ? 'light' : 'dark';
-          btn.textContent = next === 'light' ? 'Light' : 'Dark';
+          // The switch reads as "light mode on/off": checked when light.
+          btn.setAttribute('aria-checked', current === 'light' ? 'true' : 'false');
           btn.setAttribute('aria-label', 'Switch to ' + next + ' theme');
         }
 

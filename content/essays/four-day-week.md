@@ -1,8 +1,8 @@
 ---
-title: "The four-day week is a strategy, not a perk"
+title: The four-day week is a strategy, not a perk
 description: "Switch has run a four-day week for years. Most agencies get the reasoning backwards: we cut the day because tired people make worse strategic decisions."
 date: 2026-06-15
-draft: true
+draft: false
 ---
 
 When people learn that Switch runs on a four-day week, the first question is usually some version of "how can you afford that?" It's a fair question aimed the wrong way. We cut a day because tired people make worse strategic decisions, and decisions are what a consultancy sells. The generosity, if you want to call it that, is a side effect.

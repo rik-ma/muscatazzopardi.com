@@ -142,7 +142,6 @@ nav.primary-nav a:hover { color: var(--fg); }
 nav.primary-nav .current { color: var(--fg); font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.02em; }
 nav.primary-nav .current .marker { color: var(--acid2); }
 
-.theme-toggle,
 .menu-btn,
 .menu-close {
   font-family: 'JetBrains Mono', monospace;
@@ -156,9 +155,33 @@ nav.primary-nav .current .marker { color: var(--acid2); }
   cursor: pointer;
   transition: color 150ms ease-out;
 }
-.theme-toggle:hover, .menu-btn:hover, .menu-close:hover { color: var(--fg); }
+.menu-btn:hover, .menu-close:hover { color: var(--fg); }
 .menu-btn { display: none; }
 .menu-close { display: none; }
+
+/* ---------- Theme switch: a sliding square, no words, no icons.
+   Square ends per the grammar. Thumb left = dark, right = light. ---------- */
+.theme-switch {
+  width: 34px;
+  height: 18px;
+  padding: 0;
+  background: none;
+  border: 1px solid color-mix(in srgb, var(--fgSoft) 55%, transparent);
+  position: relative;
+  cursor: pointer;
+  transition: border-color 150ms ease-out;
+}
+.theme-switch:hover { border-color: var(--fg); }
+.theme-switch .thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 10px;
+  height: 10px;
+  background: var(--fg);
+  transition: transform 150ms ease-out;
+}
+html[data-theme="light"] .theme-switch .thumb { transform: translateX(16px); }
 
 /* ---------- Mobile menu: MENU word, full overlay, big type ---------- */
 @media (max-width: 760px) {
@@ -190,11 +213,16 @@ nav.primary-nav .current .marker { color: var(--acid2); }
     letter-spacing: -0.025em;
     line-height: 1.15;
   }
-  body.menu-open .theme-toggle {
+  body.menu-open .theme-switch {
     margin-top: auto;
-    padding-top: 2.5rem;
-    font-size: 13px;
+    width: 46px;
+    height: 24px;
   }
+  body.menu-open .theme-switch .thumb {
+    top: 4px; left: 4px;
+    width: 14px; height: 14px;
+  }
+  html[data-theme="light"] body.menu-open .theme-switch .thumb { transform: translateX(23px); }
 }
 
 /* ---------- Motion ---------- */

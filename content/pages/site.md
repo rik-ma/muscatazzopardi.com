@@ -43,8 +43,8 @@ Back link: Home
 
 ## Notes
 
-- The six nav words (Home, About, Writing, Playbooks, Now, Contact) and the
-  LIGHT/DARK toggle are structural — renaming them changes routing, so ask Claude
-  rather than editing them here.
+- The six nav words (Home, About, Writing, Playbooks, Now, Contact) are
+  structural — renaming them changes routing, so ask Claude rather than editing
+  them here. The theme control is now a wordless slide switch (no text to edit).
 - Each page's browser-tab title and its search/social description live in that
   page's file under src/pages/. Tell Claude if you want any of those reworded.
