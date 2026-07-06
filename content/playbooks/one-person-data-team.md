@@ -43,7 +43,7 @@ Two ideas make it work, and they matter more than any tool name.
 
 **Code first, models for judgment only.** Most of this work is deterministic: fetching registry records, de-duplicating company names, filling spreadsheet columns, applying scoring thresholds. The agent writes ordinary scripts for all of that, which cost nothing to run at any scale. The language models get spent only where judgment is needed: is this person still in the role, does this company fit the profile, are these two records the same firm. On a recent run across 624 companies, the deterministic layer did most of the cell-filling before a model touched anything.
 
-**Models check other models.** A single model researching the web gets roughly a third of its findings wrong, and confidently so. The fix is structural: one cheap model discovers wide, a second model from a different family independently re-searches every candidate with instructions to assume it's wrong until proven, and a hard rule sorts the survivors. Different architectures fail differently, which is the point. I'll come back to this, because it's the most reusable idea in here.
+**Models check other models.** A single model researching the web gets roughly a third of its findings wrong, and it sounds just as sure about the wrong ones. The fix is structural: one cheap model discovers wide, a second model from a different family independently re-searches every candidate with instructions to assume it's wrong until proven, and a hard rule sorts the survivors. Models built differently tend to fail differently, so their errors don't overlap much.
 
 ## Worked example: the contact list that was 42% dead
 
@@ -82,31 +82,68 @@ This is the piece I now use for anything AI researches on my behalf, not just co
   <div class="pbd-3col pbd-outcomes">
     <div><span class="pbd-tag">Confirmed</span><p class="pbd-note">ships, with source and date attached</p></div>
     <div><span class="pbd-tag">Uncertain · high value</span><p class="pbd-note">escalated to a frontier model for a tie-break</p></div>
-    <div><span class="pbd-tag">Uncertain · low value</span><p class="pbd-note">dropped. Silence beats a wrong name</p></div>
+    <div><span class="pbd-tag">Uncertain · low value</span><p class="pbd-note">dropped rather than risked</p></div>
   </div>
 </div>
 
-The subtlety worth stealing: the second model catches hallucinations, but it cannot catch staleness, because two models reading the same three-year-old press release will both believe it. The dated-evidence rule catches staleness. On a measured comparison the two-model version came out at 78% verified-correct against 67% for one model alone, and found dozens of real buyers the single pass had missed, while the expensive frontier model only ever saw the contested fifth of the list.
+One thing took me a while to understand: the second model catches hallucinations, but it cannot catch staleness, because two models reading the same three-year-old press release will both believe it. The dated-evidence rule catches staleness. On a measured comparison the two-model version came out at 78% verified-correct against 67% for one model alone, and found dozens of real buyers the single pass had missed, while the expensive frontier model only ever saw the contested fifth of the list.
+
+## Scoring: deciding who gets your time
+
+A verified list still doesn't tell you who to call first, who to invite to dinner, or who to leave alone. That's a scoring job, and it's the layer most bought-in databases skip entirely.
+
+It starts with an ideal customer profile written as something a machine can score, not a feeling. Take the profile you already carry in your head and turn it into a rubric: a short ladder of fit (no fit, possible, good) with the characteristics spelled out, and a 0 to 100 score behind it. The distinctions that matter most are the ones that need writing down, because they're the ones a model gets wrong when left to its own judgment. In one market the line that mattered was whether a company buys production work repeatedly or buys once through project intermediaries; two companies that looked identical on paper sat on opposite sides of it, and only one was worth a visit.
+
+A cheap model scores every company against the rubric. The thresholds that turn scores into grades live in code, not in the model, so the labels mean the same thing on row 600 as on row 6. And fit alone still isn't priority, because a perfect-fit company you can't reach is worth less than a decent-fit company you can. So the fit score gets blended with two more ingredients before anything is ranked.
+
+<div class="pbd">
+  <div class="pbd-3col">
+    <div>
+      <span class="pbd-tag">Fit · 0&ndash;100</span>
+      <p class="pbd-note">scored against the written rubric; grade thresholds applied in code, not left to the model's mood</p>
+    </div>
+    <div>
+      <span class="pbd-tag">Route in</span>
+      <p class="pbd-note">direct, gated behind an accreditation, buying through intermediaries, or controlled by an overseas parent</p>
+    </div>
+    <div>
+      <span class="pbd-tag">Timing</span>
+      <p class="pbd-note">live buying signals, plus geography where delivery is physical</p>
+    </div>
+  </div>
+  <p class="pbd-blend">blended in code into one working priority</p>
+  <ul class="pbd-buckets">
+    <li>Work now</li>
+    <li>Work next</li>
+    <li>Qualify</li>
+    <li>Background-track</li>
+    <li>Leave alone</li>
+  </ul>
+</div>
+
+Scoring is also where a model's systematic bias does the most damage, which is why the stratified audit sits here: a stronger model checks a sample before anything ships, and if it finds a slant, you fix the rubric and re-run rather than correcting rows by hand.
+
+The useful part is that one scored list answers several different questions, each with its own weighting. Who gets a call this quarter weights fit and route. Who gets an invitation when you're in a city for one week weights geography and seniority; on the market-entry project below, a universe of 542 ranked targets produced a dinner shortlist of 28, and the scoring made the guest list rather than anyone's memory of who seemed important. Who gets the expensive deep-research treatment weights priority, so the model spend lands on accounts that can pay it back. The weights change with the question. The scored list underneath stays the same.
 
 ## The same setup, four other jobs
 
-**A competitor certification map.** For a manufacturer deciding which accreditations to invest in: which certifications does every competitor hold, and which ones actually gate the contracts worth winning? The certifiers publish public registers, so the discipline is registries before claims, claims before inference. Every cell in the finished matrix carries a source, a date, and one of four evidence tiers, from registry-confirmed down to not-found. What used to be a consultant's month is a background run with a token budget smaller than a night out.
+**A competitor certification map.** For a manufacturer deciding which accreditations to invest in: which certifications does every competitor hold, and which ones actually gate the contracts worth winning? The certifiers publish public registers, so the discipline is registries before claims, claims before inference. Every cell in the finished matrix carries a source, a date, and one of four evidence tiers, from registry-confirmed down to not-found. This used to be a month of consultant time. It ran in the background over a few days, for a few euros of model spend.
 
 **Buying signals from public databases.** Static fit tells you who could buy; public data tells you when. Government planning databases record who just got consent to build, which for anyone supplying construction is a dated announcement of imminent spending. Public procurement portals record contract awards, and a fresh award means a winner standing up a supply chain. Filtering those feeds against a prospect list turned a database of 624 companies into a ranked call list of accounts with a live, sourced reason to talk this quarter.
 
-**Mapping a market you're entering.** For a push into one US metro area, models enumerated the candidate universe and then every single name was verified against the company's own website and the person's own public profile before it counted. The starting material claimed hundreds of contacts; 66 turned out to be fabrications and were removed, and the number of people who were verifiably real, in role, and reachable went from 62 to 221. An unverified list would have looked three times better and performed three times worse.
+**Mapping a market you're entering.** For a push into one US metro area, models enumerated the candidate universe and then every single name was verified against the company's own website and the person's own public profile before it counted. The starting material claimed hundreds of contacts; 66 turned out to be fabrications and were removed, and the number of people who were verifiably real, in role, and reachable went from 62 to 221. The unverified version of that list looked much healthier. Most of it would have bounced.
 
-**Checking AI's homework.** The inverse job: when a model generates a plausible list of lookalike companies, treat it as raw ore. One batch of 42 AI-suggested firms survived verification as 27, once duplicates, private-equity acquisitions, offshore operations, and size-band violations were caught against live sources. Another batch of 43 came out as 22. Roughly a third evaporates on contact with reality, which is exactly the discovery error rate again, and exactly why nothing ships unverified.
+**Checking AI's homework.** The inverse job: when a model generates a plausible list of lookalike companies, treat it as raw ore. One batch of 42 AI-suggested firms survived verification as 27, once duplicates, private-equity acquisitions, offshore operations, and size-band violations were caught against live sources. Another batch of 43 came out as 22. Roughly a third evaporated when checked, the same third as everywhere else in this piece, and the reason nothing ships unverified.
 
 And when there's no official registry to anchor on, the pattern still holds; you just swap the spine. For a market of US nonprofits, public IRS filings played the registry's role, and the same pipeline produced 3,351 verified organisations and around 2,500 named contacts with barely a frontier-model token spent.
 
 ## What it costs
 
-The recurring bill for all of the above is about $20 a month in model subscriptions, a couple of dollars of search-API credit per full run, and frontier-model tokens only for the contested judgment calls, which the routing keeps to a small fraction. The real cost is the discipline: sources with dates, verification before shipping, audits before delivery. That part doesn't come with the subscription.
+The recurring bill for all of the above is about $20 a month in model subscriptions, a couple of dollars of search-API credit per full run, and frontier-model tokens only for the contested judgment calls, which the routing keeps to a small fraction. The real cost is the discipline: sources with dates, verification before shipping, an audit before delivery.
 
 ## Where to start
 
-Pick the smallest version of your own question. Twenty-five companies from your CRM, checked against the company registry and the open web, every name tagged with a source, a date, and a confidence level. That's one afternoon, most of it running while you do something else, and it will tell you what percentage of your database is still true. Mine was 58%. Then ask what else you've been treating as unknowable that is actually just sitting in public data, waiting for someone with an agent and an afternoon.
+Pick the smallest version of your own question. Twenty-five companies from your CRM, checked against the company registry and the open web, every name tagged with a source, a date, and a confidence level. That's one afternoon, most of it running while you do something else, and it will tell you what percentage of your database is still true. Mine was 58%. Then ask what else you've been treating as unknowable. A lot of it is just sitting in public data.
 
 <style>
   /* Playbook diagrams — type, hairlines, and whitespace, per the design system.
@@ -198,6 +235,31 @@ Pick the smallest version of your own question. Twenty-five companies from your 
     margin: 1.75rem 0;
   }
   .pbd-outcomes { margin-top: 0; }
+  .pbd p.pbd-blend {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--fgSoft);
+    border-top: 1px solid color-mix(in srgb, var(--fgSoft) 20%, transparent);
+    padding-top: 1.25rem;
+    margin: 1.75rem 0 1.1rem 0;
+  }
+  .pbd-buckets {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 2rem;
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--fg);
+  }
+  .pbd-buckets li:nth-child(n+3) { color: var(--fgSoft); font-weight: 400; }
   @media (max-width: 640px) {
     .pbd-3col, .pbd-2col { grid-template-columns: 1fr; }
   }
