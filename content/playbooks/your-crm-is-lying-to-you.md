@@ -2,7 +2,7 @@
 title: "Your CRM is lying to you"
 description: "The AI pipeline I use to rebuild a B2B contact list that's actually true: official registries first, cheap models to discover, a different model to verify, and a hard recency rule that does the real work."
 date: 2026-07-06
-draft: true
+draft: false
 ---
 
 Last year I rebuilt a prospect database for a manufacturing business. Of the 190 named contacts they were holding, 110 were still in their jobs. The rest had moved on, retired, or never held the role in the first place. Nobody knew, because a CRM never admits it's wrong. It just sits there, confidently out of date, until a salesperson opens a call with the name of someone who left in 2023.

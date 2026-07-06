@@ -3,7 +3,8 @@ page: about
 title: About me
 # EDIT-THEN-SYNC. Edit the prose, tell Claude, it ports into src/pages/about.astro.
 # **bold** lead-ins in the credentials list render as the bold-lead-in rows.
-# The <!-- photo --> marker is where the Porto speaking photo now sits (live).
+# The Porto speaking photo sits at the TOP of the page, beside the first three
+# paragraphs, same grid as the homepage (Richard, July 2026).
 ---
 
 I'm the CEO of **Switch**, a B2B brand and marketing consultancy I run with my brother Ed. I co-founded Switch Digital in 2013; in 2016 we merged with Switch to create a single unified agency. In 2019 Ed and I bought out our two partners, and we've run it together ever since.
@@ -20,7 +21,7 @@ Alongside Switch:
 - **I completed Stanford Graduate School of Business's Executive Leadership Program in 2022**, and I've guest lectured on marketing at Northeastern University's D'Amore-McKim School of Business since 2020.
 - **I sit on the Strategic Committee of [ICOM](https://icomagencies.com)**, one of the world's largest networks of independent agencies.
 
-<!-- PHOTO (live): speaking at an ICOM event in Porto — hard rectangle, no caption -->
+<!-- PHOTO: the Porto speaking shot now sits at the TOP beside the intro paragraphs, homepage-style -->
 
 Mentoring is the thread through all of it. Beyond the formal work, I regularly help people around me start and build businesses of their own, sustainably.
 

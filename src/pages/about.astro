@@ -11,13 +11,30 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <h1 class="about-title">About me</h1>
     </header>
 
-    <div class="about-body fade-up fade-up-2">
-      <p>I&rsquo;m the CEO of <strong>Switch</strong>, a B2B brand and marketing consultancy I run with my brother Ed. I co-founded Switch Digital in 2013; in 2016 we merged with Switch to create a single unified agency. In 2019 Ed and I bought out our two partners, and we&rsquo;ve run it together ever since.</p>
+    <section class="about-intro fade-up fade-up-2">
+      <div class="portrait-col">
+        <figure class="about-figure">
+          <img
+            src="/images/speaking.jpg"
+            width="1600"
+            height="1066"
+            alt="Richard Muscat Azzopardi speaking at an ICOM event in Porto"
+            loading="eager"
+          />
+        </figure>
+      </div>
+      <div class="prose-col">
+        <div class="prose">
+          <p>I&rsquo;m the CEO of <strong>Switch</strong>, a B2B brand and marketing consultancy I run with my brother Ed. I co-founded Switch Digital in 2013; in 2016 we merged with Switch to create a single unified agency. In 2019 Ed and I bought out our two partners, and we&rsquo;ve run it together ever since.</p>
 
-      <p>The part of the Switch story I&rsquo;m proudest of is the transformation. We went from a 360&deg; agency serving every kind of client in Malta to a predominantly B2B consultancy working with brands that make a difference in the world around them, and in the past four years our clients went from Malta-only to mostly the UK and the US. We did it deliberately: a four-day work week, a fully remote team, and a culture where kindness is an operating principle rather than a poster in a kitchen.</p>
+          <p>The part of the Switch story I&rsquo;m proudest of is the transformation. We went from a 360&deg; agency serving every kind of client in Malta to a predominantly B2B consultancy working with brands that make a difference in the world around them, and in the past four years our clients went from Malta-only to mostly the UK and the US. We did it deliberately: a four-day work week, a fully remote team, and a culture where kindness is an operating principle rather than a poster in a kitchen.</p>
 
-      <p>None of that is incidental. One of my main goals in life is to prove that you can run successful businesses with kindness, and that the most sustainable businesses are a positive influence on their clients, their people, their communities, and the environment they operate in. Switch is my working proof.</p>
+          <p>None of that is incidental. One of my main goals in life is to prove that you can run successful businesses with kindness, and that the most sustainable businesses are a positive influence on their clients, their people, their communities, and the environment they operate in. Switch is my working proof.</p>
+        </div>
+      </div>
+    </section>
 
+    <div class="about-body fade-up fade-up-3">
       <p>Alongside Switch:</p>
 
       <div class="credential-block">
@@ -27,16 +44,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <p><strong>I completed Stanford Graduate School of Business&rsquo;s Executive Leadership Program in 2022</strong>, and I&rsquo;ve guest lectured on marketing at Northeastern University&rsquo;s D&rsquo;Amore-McKim School of Business since 2020.</p>
         <p><strong>I sit on the Strategic Committee of <a href="https://icomagencies.com">ICOM</a></strong>, one of the world&rsquo;s largest networks of independent agencies.</p>
       </div>
-
-      <figure class="about-figure">
-        <img
-          src="/images/speaking.jpg"
-          width="1600"
-          height="1066"
-          alt="Richard Muscat Azzopardi speaking at an ICOM event in Porto"
-          loading="lazy"
-        />
-      </figure>
 
       <p>Mentoring is the thread through all of it. Beyond the formal work, I regularly help people around me start and build businesses of their own, sustainably.</p>
 
@@ -101,13 +108,45 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .credential-block p:last-child { margin-bottom: 1.4em; }
   .credential-block strong { font-weight: 600; }
 
-  /* Pattern 2 image-card: hard rectangle, no caption, breathing room */
-  .about-figure {
-    margin: clamp(2.5rem, 6vh, 4rem) 0;
+  /* ---------- Intro: prose + speaking photo, same grid grammar as Home ---------- */
+  .about-intro {
+    padding-bottom: clamp(2.5rem, 6vh, 4rem);
+    display: grid;
+    grid-template-columns: minmax(0, 57fr) minmax(0, 43fr);
+    grid-template-areas: "prose photo";
+    gap: 0 clamp(2rem, 5vw, 5rem);
+    align-items: start;
   }
+  .portrait-col { grid-area: photo; min-width: 0; }
+  .prose-col { grid-area: prose; min-width: 0; }
+  .about-intro .prose { max-width: 60ch; }
+  .about-intro .prose p {
+    font-size: 1.1875rem;
+    line-height: 1.6;
+    margin: 0 0 1.4em 0;
+    color: var(--fg);
+  }
+  @media (max-width: 480px) {
+    .about-intro .prose p { font-size: 17px; }
+  }
+  .about-intro .prose p:last-child { margin-bottom: 0; }
+  .about-intro .prose strong { font-weight: 600; }
+
+  /* Pattern 2 image-card: hard rectangle, no caption, bleeds to the right edge */
+  .about-figure { margin: 0; }
   .about-figure img {
     display: block;
-    width: 100%;
+    width: calc(100% + clamp(1.25rem, 4vw, 4.5rem));
     height: auto;
+  }
+
+  @media (max-width: 760px) {
+    .about-intro {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "photo"
+        "prose";
+    }
+    .about-figure { margin-bottom: 2rem; }
   }
 </style>

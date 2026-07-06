@@ -4,7 +4,7 @@ Generate Open Graph share cards for muscatazzopardi.com.
 
 Renders 1200x630 PNGs to public/og/:
   - default.png        — no title, just the name, huge (used for Home / About / Now / Contact)
-  - <slug>.png          — one per published entry in src/content/writing and src/content/playbooks,
+  - <slug>.png          — one per published entry in content/essays and content/playbooks,
                           title pulled from frontmatter
 
 Design law: dark paper (#0A0A0A), sodium flag bar 90px on the left (#F5D547),
@@ -24,7 +24,7 @@ from playwright.sync_api import sync_playwright
 ROOT = Path(__file__).resolve().parent.parent
 FONTS_DIR = ROOT / "public" / "fonts"
 OG_DIR = ROOT / "public" / "og"
-CONTENT_DIRS = [ROOT / "src" / "content" / "writing", ROOT / "src" / "content" / "playbooks"]
+CONTENT_DIRS = [ROOT / "content" / "essays", ROOT / "content" / "playbooks"]
 
 WIDTH, HEIGHT = 1200, 630
 FLAG_W = 90
@@ -155,7 +155,7 @@ def slugify_frontmatter_title(md_text: str) -> str | None:
 
 
 def is_draft(md_text: str) -> bool:
-    match = re.search(r"^draft:\s*(true|false)\s*$", md_text, re.MULTILINE)
+    match = re.search(r"^draft:\s*(true|false)\b", md_text, re.MULTILINE)  # \b not $: tolerate trailing comments
     return bool(match and match.group(1) == "true")
 
 
