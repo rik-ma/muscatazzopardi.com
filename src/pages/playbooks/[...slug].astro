@@ -25,7 +25,6 @@ const minutes = Math.max(1, Math.round(wordCount / 220));
   ogImage={`/og/${entry.id}.png`}
   ogType="article"
   publishedTime={entry.data.date.toISOString()}
-  hideFooterRule
 >
   <main id="main">
     <article>
@@ -42,7 +41,6 @@ const minutes = Math.max(1, Math.round(wordCount / 220));
     </article>
 
     <div class="back-link-row">
-      <hr class="hairline" />
       <p><a href="/playbooks" class="back-link"><span class="marker">/</span> Playbooks</a></p>
     </div>
   </main>

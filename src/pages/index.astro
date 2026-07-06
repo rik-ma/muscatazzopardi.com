@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Newsletter from '../components/Newsletter.astro';
 import { getCollection } from 'astro:content';
 
 const allWriting = await getCollection('writing', ({ data }) => !data.draft);
@@ -32,7 +31,7 @@ const isoMonth = (d: Date) => d.toISOString().slice(0, 7);
         <div class="prose">
           <p>Hi, I&rsquo;m Rik.</p>
           <p>I&rsquo;ve spent the last twenty years building businesses and helping other people build theirs. These days that means three things: I&rsquo;m the CEO of <a href="https://switch.com.mt">Switch</a>, a B2B brand and marketing consultancy I run with my brother Ed; I chair a <a href="https://vistage.com">Vistage</a> group of business leaders; and I work with a small number of US and UK companies as a strategy consultant, fractional CMO, and coach. Along the way I picked up an executive education at Stanford&rsquo;s Graduate School of Business, which still shapes how I think about strategy.</p>
-          <p>The thread running through all of it is a simple belief: growth and kindness are not a trade-off. The best businesses I&rsquo;ve worked with grow <em>because</em> of how they treat people, not in spite of it. One of my goals in life is to prove that, repeatedly.</p>
+          <p>The thread running through all of it is a simple belief: growth and kindness are not a trade-off. The best businesses I&rsquo;ve worked with grow <em>because</em> of how they treat their people and the world around them, not in spite of it. One of my goals in life is to prove that, repeatedly.</p>
           <p>I write about marketing, strategy, and what it actually takes to run a good business over in <a href="/writing">Writing</a>. If you&rsquo;d like to get in touch, <a href="/contact">here&rsquo;s how</a>.</p>
         </div>
       </div>
@@ -53,8 +52,6 @@ const isoMonth = (d: Date) => d.toISOString().slice(0, 7);
         </a>
       ))}
     </section>
-
-    <Newsletter />
   </main>
 
   <script type="application/ld+json" set:html={JSON.stringify({

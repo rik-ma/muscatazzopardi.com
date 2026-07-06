@@ -79,10 +79,18 @@ All editable content is in the top-level **`content/`** folder, not
 - `content/essays/*.md` → the `writing` collection (routes at `/writing/<slug>`)
 - `content/playbooks/*.md` → the `playbooks` collection (`/playbooks/<slug>`)
 - `content/pages/*.md` → **not a collection.** Human-readable master copies
-  of the Home / About / Now / Contact prose, for Richard to edit. They are
-  edit-then-sync: changing them does NOT change the site by itself. When
-  Richard edits one, port the prose into the matching `src/pages/*.astro`.
+  of the Home / About / Now / Contact prose, plus `site.md` (global text:
+  the newsletter box, footer byline, contact-form labels/messages, 404).
+  For Richard to edit. They are edit-then-sync: changing them does NOT change
+  the site by itself. When Richard edits one, port the words into the matching
+  `src/pages/*.astro`, `src/layouts/BaseLayout.astro`, or
+  `src/components/Newsletter.astro`.
 - `content/README.md` explains this to Richard.
+
+**Newsletter placement:** the `Newsletter.astro` component renders inside the
+footer in `BaseLayout.astro`, so it appears on every page (subscribe after
+reading any post). It is NOT in `index.astro` anymore. Its copy is mirrored in
+`content/pages/site.md`.
 
 ## How to add an essay
 

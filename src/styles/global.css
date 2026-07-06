@@ -246,9 +246,11 @@ nav.primary-nav .current .marker { color: var(--acid2); }
 }
 .prose a:hover { text-decoration-color: var(--acid); }
 
-/* ---------- Newsletter: one line, one field ---------- */
+/* ---------- Newsletter: one line, one field. Lives in the footer on every
+   page (after the footer's hairline, before the chrome row). ---------- */
 .newsletter {
-  padding-bottom: clamp(4rem, 10vh, 7rem);
+  padding-top: clamp(2.25rem, 5vh, 3.25rem);
+  padding-bottom: clamp(1.5rem, 3vh, 2.25rem);
 }
 .newsletter-line {
   font-family: 'Inter Tight', system-ui, sans-serif;
@@ -491,11 +493,11 @@ h1.essay-title {
 
 /* ---------- Back link ---------- */
 .back-link-row {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 .back-link-row p {
-  margin: 1.5rem 0 0 0;
+  margin: 0;
 }
 .back-link {
   font-family: 'JetBrains Mono', monospace;
@@ -512,10 +514,6 @@ footer.site-footer {
   padding-top: 2rem;
   padding-bottom: 3rem;
 }
-/* Essay/playbook pages: the back-link row above already carries the page's
-   closing hairline, so the footer drops its own (per mock-v3-essay.html). */
-footer.site-footer.no-rule { padding-top: 0; }
-footer.site-footer.no-rule .footer-row { margin-top: 0; }
 .footer-row {
   display: flex;
   justify-content: space-between;

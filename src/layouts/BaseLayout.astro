@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Newsletter from '../components/Newsletter.astro';
 
 interface Props {
   title: string;
@@ -9,9 +10,6 @@ interface Props {
   ogType?: 'website' | 'article';
   /** ISO date string, emitted as article:published_time when ogType is 'article'. */
   publishedTime?: string;
-  /** Essay/playbook pages carry their own closing hairline in the back-link
-      row (per mock-v3-essay.html), so the footer's rule is suppressed. */
-  hideFooterRule?: boolean;
 }
 
 const {
@@ -20,7 +18,6 @@ const {
   ogImage = '/og/default.png',
   ogType = 'website',
   publishedTime,
-  hideFooterRule = false,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
@@ -112,8 +109,9 @@ const isCurrent = (href: string) =>
 
         <slot />
 
-        <footer class:list={['site-footer', { 'no-rule': hideFooterRule }]}>
-          {!hideFooterRule && <hr class="hairline" />}
+        <footer class="site-footer">
+          <hr class="hairline" />
+          <Newsletter />
           <div class="footer-row">
             <div class="footer-left">
               Richard Muscat Azzopardi · <a href="/contact">Contact</a> · <a href="https://www.linkedin.com/in/richardmuscatazzopardi">LinkedIn</a>

@@ -26,12 +26,17 @@ web address, e.g. `buy-it-for-life.md` → `/writing/buy-it-for-life`), and writ
 ### `playbooks/` — your open-source methods (LIVE source)
 Same rules as essays. Both current playbooks are published (`draft: false`).
 
-### `pages/` — the fixed pages (EDIT-THEN-SYNC)
-`home`, `about`, `now`, `contact`. These pages have design and layout that plain
-Markdown can't fully carry (the big name, your portrait, the form, the thesis
-line), so editing these files does **not** change the live site by itself. Edit
-the prose, tell Claude, and it copies your words into the built page and
-redeploys. Think of these as the readable master copy of the words.
+### `pages/` — the fixed pages and shared text (EDIT-THEN-SYNC)
+`home`, `about`, `now`, `contact`, plus `site.md`. These pages have design and
+layout that plain Markdown can't fully carry (the big name, your portrait, the
+form, the thesis line), so editing these files does **not** change the live site
+by itself. Edit the prose, tell Claude, and it copies your words into the built
+page and redeploys. Think of these as the readable master copy of the words.
+
+`site.md` holds the text that appears across the whole site rather than on one
+page: the **newsletter box** (now in the footer of every page), the footer
+byline, the contact-form labels and messages, and the 404 page. This is where
+you edit the subscription-box wording.
 
 `contact.md` has two lines marked `[DEVIATION]` — small changes from your
 original wording, explained inline, for you to keep or undo.
