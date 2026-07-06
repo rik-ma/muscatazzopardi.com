@@ -5,7 +5,7 @@ date: 2026-07-05
 draft: false
 ---
 
-A few years ago a client asked Ed and me why our proposal was three pages instead of the twenty he was used to getting from other agencies. We told him the truth: we'd cut everything whose only job was to make us look busy. He signed that week. He's still a client four years later, and he's sent us two more since.
+A few years ago a client asked Ed and me why our proposal was three pages instead of the twenty he was used to getting from other agencies. We told him the truth: we'd cut everything whose only job was to make us look busy. He signed that week. He's still a client four years later, and he's sent us two more clients since.
 
 I bring this up because kindness has a branding problem in business. The word sounds like a poster in an office kitchen, somewhere above the recycling bins. What it looks like in practice is harder. Being kind to a client means telling them the campaign they love isn't going to work, before they spend the money. Being kind to a team means saying no to the project that would make the agency more money but would burn three people out to deliver it. Done properly, kindness is a discipline for making hard calls.
 

@@ -110,11 +110,11 @@ def build_html(title: str | None) -> str:
   .title {{
     font-family: 'Inter Tight', sans-serif;
     font-weight: 600;
-    font-size: 58px;
+    font-size: 64px;
     line-height: 1.04;
     letter-spacing: -0.03em;
     color: {FG};
-    max-width: 15ch;
+    max-width: 26ch;
   }}
   .name-huge {{
     font-family: 'Inter Tight', sans-serif;
