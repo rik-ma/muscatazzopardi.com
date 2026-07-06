@@ -22,6 +22,7 @@ const entries = allEntries.sort((a, b) => b.data.date.valueOf() - a.data.date.va
       {entries.map((entry) => (
         <a href={`/playbooks/${entry.id}`} class="writing-item">
           <span class="writing-title">{entry.data.title}</span>
+          <span class="writing-summary">{entry.data.description}</span>
           <time class="writing-meta" datetime={entry.data.date.toISOString().slice(0, 7)}>
             {entry.data.date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
           </time>
@@ -30,3 +31,16 @@ const entries = allEntries.sort((a, b) => b.data.date.valueOf() - a.data.date.va
     </section>
   </main>
 </BaseLayout>
+
+<style>
+  /* What the playbook solves, under the title. Content, so sans; quiet. */
+  .writing-item .writing-summary {
+    display: block;
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.5;
+    color: var(--fgSoft);
+    max-width: 52ch;
+    margin: 0 0 0.6rem 0;
+  }
+</style>
