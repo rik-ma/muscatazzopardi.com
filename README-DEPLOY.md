@@ -1,44 +1,64 @@
-# Deploying muscatazzopardi.com — 10-minute runbook
+# Deploying muscatazzopardi.com — runbook
 
-This is a static Astro site deploying to Cloudflare Pages. Run these steps
-in order the first time; most of them are one-off setup.
+Static Astro site on Cloudflare Pages, **direct-upload** deploy (not
+git-connected — see AGENTS.md "Deployment and Git" for why). GitHub is
+backup/history only and is not involved in deploying.
 
-## 1. Log in to Cloudflare
+## STATUS (July 2026)
+
+DONE: Cloudflare auth, Pages project `muscatazzopardi` created, KV
+namespace `SUBSCRIBERS` created + bound, `RESEND_API_KEY` secret set,
+`CONTACT_TO`/`CONTACT_FROM` vars set, site deployed and live at
+`https://muscatazzopardi.pages.dev`, contact form + newsletter both
+tested working, repo pushed to GitHub (`rik-ma/muscatazzopardi.com`).
+
+STILL OUTSTANDING: custom-domain cutover (step 5), Web Analytics token
+(step 8), Search Console + Bing (step 9). These wait on Richard's go.
+
+## The routine deploy (this is all you normally need)
+
+```
+npm run build
+npx wrangler pages deploy dist --project-name muscatazzopardi --branch main --commit-dirty=true
+git add -A && git commit -m "..." && git push   # backup to GitHub
+```
+
+If an essay/playbook was added or renamed, run
+`python scripts/generate-og.py` before the build so its OG card exists.
+
+---
+
+Everything below is one-off setup. Steps 1–4, 6, 7 are already done and
+recorded here for reference / disaster recovery.
+
+## 1. Log in to Cloudflare  ✅ done
 
 ```
 npx wrangler login
 ```
 
-Opens a browser window to authorize Wrangler against the Cloudflare
-account that will host the site.
-
-## 2. Create the Pages project
+## 2. Create the Pages project  ✅ done
 
 ```
-npx wrangler pages project create muscatazzopardi
+npx wrangler pages project create muscatazzopardi --production-branch main
 ```
 
-Accept the defaults (production branch `main` is fine even without a git
-remote connected yet — deploys can be pushed directly with Wrangler).
-
-## 3. Build
+## 3. Build  ✅ (routine)
 
 ```
 npm run build
 ```
 
-Outputs the static site to `dist/`. Confirm it completed without errors
-and that `dist/index.html` exists before deploying.
+Outputs the static site to `dist/`.
 
-## 4. Deploy
+## 4. Deploy  ✅ (routine — see "The routine deploy" above)
 
 ```
-npx wrangler pages deploy dist
+npx wrangler pages deploy dist --project-name muscatazzopardi --branch main --commit-dirty=true
 ```
 
-Wrangler uploads `dist/` and prints a `*.pages.dev` preview URL. Open it
-and click through Home, About, Writing, Playbooks, Now, and Contact
-before moving on.
+Prints a `*.pages.dev` URL. Currently live at
+`https://muscatazzopardi.pages.dev`.
 
 ## 5. Hook up the custom domain
 
@@ -61,15 +81,12 @@ what the newsletter signup Pages Function reads and writes.
 
 ## 7. Set secrets
 
-In **Pages → muscatazzopardi → Settings → Environment variables**
-(Production, and Preview if you want form testing on preview deploys to
-work), add as **encrypted** secrets:
-
-- `RESEND_API_KEY` — API key for the transactional email provider sending
-  double-opt-in confirmations and the Contact page notification.
-- `CONTACT_TO` — the email address that receives Contact form submissions
-  (Richard's real address never appears in the site's HTML; it only lives
-  here).
+Only `RESEND_API_KEY` is an encrypted secret (already set via
+`wrangler pages secret put RESEND_API_KEY --project-name muscatazzopardi`).
+`CONTACT_TO` and `CONTACT_FROM` are plain `[vars]` in `wrangler.toml`
+(both `richard@muscatazzopardi.com`) and apply automatically on deploy —
+they are not secrets and don't need dashboard entry. Pages captures
+secrets at deploy time, so redeploy after changing `RESEND_API_KEY`.
 
 ## 8. Enable Cloudflare Web Analytics
 

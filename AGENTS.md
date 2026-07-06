@@ -70,9 +70,23 @@ that readers can run on their own businesses with zero reference to who
 they were built for. If a draft essay or playbook edges toward describing
 a real, identifiable engagement, generalize it before it ships.
 
+## Where content lives (moved — do not use src/content)
+
+All editable content is in the top-level **`content/`** folder, not
+`src/content` (which no longer exists). The collection loaders in
+`src/content.config.ts` glob these paths:
+
+- `content/essays/*.md` → the `writing` collection (routes at `/writing/<slug>`)
+- `content/playbooks/*.md` → the `playbooks` collection (`/playbooks/<slug>`)
+- `content/pages/*.md` → **not a collection.** Human-readable master copies
+  of the Home / About / Now / Contact prose, for Richard to edit. They are
+  edit-then-sync: changing them does NOT change the site by itself. When
+  Richard edits one, port the prose into the matching `src/pages/*.astro`.
+- `content/README.md` explains this to Richard.
+
 ## How to add an essay
 
-1. Create `src/content/writing/<slug>.md` with frontmatter:
+1. Create `content/essays/<slug>.md` with frontmatter:
    ```yaml
    ---
    title: "Sentence-case title"
@@ -90,7 +104,7 @@ a real, identifiable engagement, generalize it before it ships.
 5. `npm run build` and spot-check the rendered page and its social card
    before deploying.
 
-Playbooks follow the identical process in `src/content/playbooks/`
+Playbooks follow the identical process in `content/playbooks/`
 instead — same schema, same script, same draft gate.
 
 ## Voice
@@ -106,14 +120,77 @@ build-up, no hedging).
 
 - Astro 5, static output (`astro build` → `dist/`), Cloudflare Pages
   target.
-- Content collections: `writing` and `playbooks`, both glob-loaded
-  Markdown with the shared schema in `src/content.config.ts`
-  (`title`, `description`, `date`, `draft`).
+- Content collections: `writing` and `playbooks`, glob-loaded Markdown
+  from the top-level `content/` folder (see "Where content lives" above),
+  shared schema in `src/content.config.ts` (`title`, `description`,
+  `date`, `draft`).
 - `BaseLayout.astro` handles theme (dark/light via `data-theme`, default
   `prefers-color-scheme`), nav, flag bar, footer, and OG/meta tags. Pass
   it `ogImage="/og/<slug>.png"` from any page with its own social card;
   it falls back to `/og/default.png` otherwise.
-- See `README-DEPLOY.md` for the full deploy runbook.
+
+## Deployment and Git — READ BEFORE DEPLOYING OR TOUCHING REMOTES
+
+The site is **LIVE on Cloudflare Pages** (project `muscatazzopardi`,
+account `richard@muscatazzopardi.com`). Two facts a new session gets wrong
+if it doesn't read this:
+
+**1. Deploy is DIRECT UPLOAD, not git-connected. This is a deliberate,
+settled decision (July 2026) — do not "helpfully" switch it to a
+git-connected Pages project.** Cloudflare can't convert project types
+anyway, so connecting git would mean recreating the project, re-adding the
+secret, and migrating the domain, for a workflow benefit that doesn't apply
+here (Richard edits by asking Claude; Claude deploys). If Richard ever
+explicitly asks for push-to-deploy, that's the only time to revisit it.
+
+**2. GitHub is BACKUP / HISTORY ONLY.** Pushing to GitHub does NOT deploy
+anything. Deploying does NOT require GitHub. They're independent.
+
+### The standard change→live flow
+
+```
+# 1. make the change (edit content/ or src/), then:
+npm run build
+# 2. if an essay/playbook was added or renamed, first:
+python scripts/generate-og.py
+# 3. deploy the built site:
+npx wrangler pages deploy dist --project-name muscatazzopardi --branch main --commit-dirty=true
+# 4. commit + push to GitHub for backup/history:
+git add -A && git commit -m "..." && git push
+```
+
+### Git / GitHub specifics (a multi-account trap lives here)
+
+- Remote: `https://github.com/rik-ma/muscatazzopardi.com` (account `rik-ma`).
+- Commit identity is set locally to `Richard Muscat Azzopardi
+  <richard@muscatazzopardi.com>` — keep it; do not commit as any other email.
+- **The trap:** this Windows machine also had cached credentials for a
+  different GitHub account, `rik-switch`. Git Credential Manager will
+  silently hand back `rik-switch` and cause `403 denied to rik-switch` on
+  push. A `rik-ma` fine-grained token is now stored in Windows Credential
+  Manager, so normal `git push` works. If a push ever 403s as
+  `rik-switch` again, the fix is to clear the github.com credential and
+  re-store the `rik-ma` token — never commit or paste a token into files
+  that get tracked or into chat.
+
+### Cloudflare specifics
+
+- Project `muscatazzopardi`, direct-upload. Deploy config in
+  `wrangler.toml`: `pages_build_output_dir = ./dist`, the `SUBSCRIBERS`
+  KV binding (newsletter), and `[vars]` `CONTACT_TO` / `CONTACT_FROM`
+  (both `richard@muscatazzopardi.com`).
+- `RESEND_API_KEY` is an encrypted Pages **secret** on the project (set via
+  `wrangler pages secret put`, never in `wrangler.toml`). Pages captures
+  secrets at deploy time, so **redeploy after changing a secret.**
+- Functions: `functions/api/contact.ts` (Resend email) and
+  `functions/api/subscribe.ts` (writes to KV). Both degrade to a graceful
+  501 if their binding/secret is missing.
+- **Domain status:** `muscatazzopardi.com` is on Cloudflare DNS but still
+  points at a placeholder — the custom domain is NOT yet attached to the
+  Pages project. Cutover to the live site is pending Richard's go-ahead.
+  Until then the site is only at `https://muscatazzopardi.pages.dev`.
+- `README-DEPLOY.md` holds the one-off setup steps (domain cutover, Web
+  Analytics token, Search Console / Bing) that are still outstanding.
 
 ## Development
 

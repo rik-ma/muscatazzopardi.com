@@ -29,3 +29,6 @@ qa/
 # local secret-drop for setting the Resend key (never committed)
 .resend-key.txt
 .wrangler/
+
+# local github token drop (never committed)
+.gh-token.txt
