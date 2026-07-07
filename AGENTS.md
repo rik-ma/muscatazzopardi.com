@@ -202,12 +202,17 @@ git add -A && git commit -m "..." && git push
 - Functions: `functions/api/contact.ts` (Resend email) and
   `functions/api/subscribe.ts` (writes to KV). Both degrade to a graceful
   501 if their binding/secret is missing.
-- **Domain status:** `muscatazzopardi.com` is on Cloudflare DNS but still
-  points at a placeholder — the custom domain is NOT yet attached to the
-  Pages project. Cutover to the live site is pending Richard's go-ahead.
-  Until then the site is only at `https://muscatazzopardi.pages.dev`.
-- `README-DEPLOY.md` holds the one-off setup steps (domain cutover, Web
-  Analytics token, Search Console / Bing) that are still outstanding.
+- **Domain: LIVE.** `muscatazzopardi.com` (apex) + `www` are attached and
+  active on the Pages project; `www` 301-redirects to the apex via a zone
+  Redirect Rule. Cutover done July 2026. DNS write needs a separate
+  user-created "Edit zone DNS" token (wrangler's OAuth has no dns scope).
+- **Web Analytics:** enabled via Cloudflare RUM auto-injection (proxied
+  zone), so there is no beacon snippet in `BaseLayout.astro` to maintain.
+- **Email signature assets:** `public/email/rma-seal.svg` is the vector
+  master (R/M/A glyphs outlined to paths, font-independent);
+  `public/email/rma-seal.png` is the 3x raster exported from it, used in
+  the Gmail signature. Regenerate the PNG from the SVG, never by hand. The
+  pasteable signature lives at `C:/Claude/RMA/Site/email-signature.html`.
 
 ## Development
 
