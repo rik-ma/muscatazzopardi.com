@@ -9,6 +9,10 @@
 // Storage: Cloudflare KV, binding name SUBSCRIBERS. Key = lowercased email,
 // value = JSON { ts: ISO 8601 string, source: 'site' }.
 //
+// On each genuinely new subscriber, notifies Richard by email (Resend, reusing
+// the contact form's RESEND_API_KEY / CONTACT_TO / CONTACT_FROM). Best-effort
+// via waitUntil, so it never delays or fails the subscriber's request.
+//
 // If the SUBSCRIBERS binding isn't configured (e.g. local dev without
 // `wrangler.toml` KV setup, or a preview deploy without the binding attached),
 // this fails gracefully with 501 rather than throwing — the newsletter form
@@ -29,6 +33,10 @@
 
 interface Env {
   SUBSCRIBERS?: KVNamespace;
+  // Reused from the contact form: notify Richard on each new subscriber.
+  RESEND_API_KEY?: string;
+  CONTACT_TO?: string;
+  CONTACT_FROM?: string;
 }
 
 interface SubscribeBody {
@@ -40,6 +48,7 @@ interface Outcome {
   status: number;
   ok: boolean;
   message: string; // written for humans; doubles as the no-JS page copy
+  newSubscriber?: string; // set to the email only when a genuinely NEW row was stored
 }
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -100,11 +109,18 @@ async function subscribe(body: SubscribeBody, env: Env): Promise<Outcome> {
     };
   }
 
+  // Only a first-time email counts as new: skip the write if it's already
+  // there (preserves the original signup timestamp) and don't re-notify.
+  let isNew = false;
   try {
-    await env.SUBSCRIBERS.put(
-      email,
-      JSON.stringify({ ts: new Date().toISOString(), source: 'site' })
-    );
+    const existing = await env.SUBSCRIBERS.get(email);
+    if (!existing) {
+      await env.SUBSCRIBERS.put(
+        email,
+        JSON.stringify({ ts: new Date().toISOString(), source: 'site' })
+      );
+      isNew = true;
+    }
   } catch {
     return {
       status: 500,
@@ -117,7 +133,33 @@ async function subscribe(body: SubscribeBody, env: Env): Promise<Outcome> {
     status: 200,
     ok: true,
     message: 'Done. You’ll hear from me when there’s something worth reading.',
+    newSubscriber: isNew ? email : undefined,
   };
+}
+
+// Best-effort notification to Richard when someone new subscribes. Runs after
+// the response (via waitUntil), so a slow or failed Resend call never affects
+// the subscriber. Silently no-ops if the email env vars aren't configured.
+async function notifyNewSubscriber(email: string, env: Env): Promise<void> {
+  if (!env.RESEND_API_KEY || !env.CONTACT_TO) return;
+  const from = env.CONTACT_FROM || 'Muscat Azzopardi site <onboarding@resend.dev>';
+  try {
+    await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${env.RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from,
+        to: [env.CONTACT_TO],
+        subject: `New newsletter subscriber: ${email}`,
+        text: `${email} just subscribed to the newsletter.\n\nWhen: ${new Date().toISOString()}\n\nThe full list lives in the SUBSCRIBERS KV namespace.`,
+      }),
+    });
+  } catch {
+    // Notification is best-effort; the subscription is already saved.
+  }
 }
 
 export const onRequestPost: PagesFunction<Env> = async (context) => {
@@ -147,6 +189,11 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   }
 
   const result = await subscribe(body, env);
+
+  // Fire the notification after responding — doesn't delay or risk the signup.
+  if (result.newSubscriber) {
+    context.waitUntil(notifyNewSubscriber(result.newSubscriber, env));
+  }
 
   if (!isJson) {
     return htmlPage(result.message, result.status);

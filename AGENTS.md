@@ -200,8 +200,11 @@ git add -A && git commit -m "..." && git push
   `wrangler pages secret put`, never in `wrangler.toml`). Pages captures
   secrets at deploy time, so **redeploy after changing a secret.**
 - Functions: `functions/api/contact.ts` (Resend email) and
-  `functions/api/subscribe.ts` (writes to KV). Both degrade to a graceful
-  501 if their binding/secret is missing.
+  `functions/api/subscribe.ts` (writes to KV; also emails Richard on each
+  NEW subscriber via Resend, best-effort in `waitUntil`, reusing
+  `RESEND_API_KEY`/`CONTACT_TO`/`CONTACT_FROM`; re-subscribes don't re-notify
+  or overwrite the original timestamp). Both degrade to a graceful 501 if
+  their binding/secret is missing.
 - **Domain: LIVE.** `muscatazzopardi.com` (apex) + `www` are attached and
   active on the Pages project; `www` 301-redirects to the apex via a zone
   Redirect Rule. Cutover done July 2026. DNS write needs a separate
