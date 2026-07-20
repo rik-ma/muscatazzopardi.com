@@ -18,6 +18,8 @@ The best way to reach me is the form below. I read everything, and I reply to al
 concrete sense of turnaround across the time-zone gap. Delete if you'd rather not. -->
 I'm based in Europe, and work from Gozo, a tiny and beautiful island in the Mediterranean sea. I'm six hours ahead of New York, which in practice means my answers are usually in your inbox before your morning coffee.
 
+If you're writing about working together: I take on strategy consulting and fractional CMO work with a small number of companies, and the number stays small on purpose. There isn't always room, but say so in your message and I'll be straight with you about timing.
+
 I'm also on [LinkedIn](https://www.linkedin.com/in/richardmuscatazzopardi), where I'm reasonably active.
 
 If you're wondering whether your thing is worth emailing about, it probably is.

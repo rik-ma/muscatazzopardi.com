@@ -5,13 +5,17 @@ import { getCollection } from 'astro:content';
 const allWriting = await getCollection('writing', ({ data }) => !data.draft);
 const writing = allWriting.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
+const featuredIndex = writing.findIndex((entry) => entry.id === 'commodities');
+const featured = featuredIndex >= 0 ? writing[featuredIndex] : null;
+const rest = featuredIndex >= 0 ? writing.filter((_, i) => i !== featuredIndex) : writing;
+
 const dateFormatter = new Intl.DateTimeFormat('en', { month: 'short', year: 'numeric' });
 const isoMonth = (d: Date) => d.toISOString().slice(0, 7);
 ---
 
 <BaseLayout
   title="Richard Muscat Azzopardi"
-  description="CEO of Switch, Vistage Chair, and fractional CMO to a small number of US and UK companies. I write about marketing, strategy, and why growth and kindness are not a trade-off."
+  description="CEO of Switch, Vistage Chair, and fractional CMO to a small number of US and UK companies. I help specialised B2B businesses, mostly in manufacturing and technology, stop being chosen on price. Growth and kindness are not a trade-off."
 >
   <main id="main">
     <section class="thesis-hero fade-up fade-up-1">
@@ -34,16 +38,29 @@ const isoMonth = (d: Date) => d.toISOString().slice(0, 7);
       <div class="prose-col">
         <p class="intro-lead">Hi, I&rsquo;m Rik.</p>
         <div class="prose">
-          <p>I&rsquo;ve spent the last twenty years building businesses and helping other people build theirs. These days that means three things: I&rsquo;m the CEO of <a href="https://switch.com.mt">Switch</a>, a B2B brand and marketing consultancy I run with my brother Ed; I chair a <a href="https://vistage.com">Vistage</a> group of business leaders; and I work with a small number of US and UK companies as a strategy consultant, fractional CMO, and coach. Along the way I picked up an executive education at Stanford&rsquo;s Graduate School of Business, which still shapes how I think about strategy.</p>
+          <p>I&rsquo;ve spent the last twenty years building businesses and helping other people build theirs. Most of that help now goes one way: getting specialised B2B companies out of the trap of being chosen on price. The word I use for it is decommoditisation, and I do most of it in manufacturing and technology. In practice it&rsquo;s three jobs: I&rsquo;m the CEO of <a href="https://switch.com.mt">Switch</a>, a B2B brand and marketing consultancy I run with my brother Ed; I chair a <a href="https://vistage.com">Vistage</a> group of business leaders; and I work with a small number of US and UK companies as a strategy consultant and fractional CMO. Along the way I picked up an executive education at Stanford&rsquo;s Graduate School of Business, which still shapes how I think about strategy.</p>
           <p>The thread running through all of it is a simple belief: growth and kindness are not a trade-off. The best businesses I&rsquo;ve worked with grow <em>because</em> of how they treat their people and the world around them, not in spite of it. One of my goals in life is to prove that, repeatedly.</p>
           <p>I write about marketing, strategy, and what it actually takes to run a good business over in <a href="/writing">Writing</a>. If you&rsquo;d like to get in touch, <a href="/contact">here&rsquo;s how</a>.</p>
         </div>
       </div>
     </section>
 
-    <section class="writing fade-up fade-up-3">
+    {featured && (
+      <section class="featured fade-up fade-up-3">
+        <p class="featured-label">Start here</p>
+        <a href={`/writing/${featured.id}`} class="writing-item">
+          <span class="writing-title">{featured.data.title}</span>
+        </a>
+        <p class="featured-desc">{featured.data.description}</p>
+        <time class="writing-meta" datetime={isoMonth(featured.data.date)}>
+          {dateFormatter.format(featured.data.date)}
+        </time>
+      </section>
+    )}
+
+    <section class="writing fade-up fade-up-4">
       <h2 class="writing-label">Writing</h2>
-      {writing.map((entry) => (
+      {rest.map((entry) => (
         <a href={`/writing/${entry.id}`} class="writing-item">
           <span class="writing-title">{entry.data.title}</span>
           <time class="writing-meta" datetime={isoMonth(entry.data.date)}>
@@ -145,6 +162,28 @@ const isoMonth = (d: Date) => d.toISOString().slice(0, 7);
     }
     .portrait-figure { margin-bottom: 2rem; }
     .portrait-figure img { width: calc(100% + clamp(1.25rem, 4vw, 4.5rem)); }
+  }
+
+  /* ---------- Featured: the commodities essay, pinned above the list ---------- */
+  .featured {
+    padding-bottom: clamp(3rem, 8vh, 5rem);
+  }
+  .featured-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fgSoft);
+    margin: 0 0 1.25rem 0;
+  }
+  .featured .writing-title { margin-bottom: 0.75rem; }
+  .featured-desc {
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.5;
+    color: var(--fgSoft);
+    max-width: 55ch;
+    margin: 0 0 1rem 0;
   }
 
   /* ---------- Writing: titles and whitespace, nothing else ---------- */

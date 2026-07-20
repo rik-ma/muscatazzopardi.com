@@ -15,7 +15,7 @@ None of that is incidental. One of my main goals in life is to prove that you ca
 
 Alongside Switch:
 
-- **I work as a fractional CMO and strategy consultant** with a small number of owner-led manufacturing and technology companies, mostly in the US and the UK.
+- **I work as a fractional CMO and strategy consultant** with a small number of owner-led manufacturing and technology companies, mostly in the US and the UK. The work is usually decommoditisation: getting a specialised business back to being chosen for what it does, rather than what it costs.
 - **I coach CFOs across the United States with Dope CFO**, helping them build their own practices serving the cannabis industry.
 - **I've been a Vistage member since 2018 and a Vistage Chair since 2023**, spending part of every month helping a group of business leaders make better decisions and build companies worth being proud of.
 - **I completed Stanford Graduate School of Business's Executive Leadership Program in 2022**, and I've guest lectured on marketing at Northeastern University's D'Amore-McKim School of Business since 2020.

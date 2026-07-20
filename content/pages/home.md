@@ -24,7 +24,7 @@ Richard Muscat Azzopardi
 
 Hi, I'm Rik.
 
-I've spent the last twenty years building businesses and helping other people build theirs. These days that means three things: I'm the CEO of [Switch](https://switch.com.mt), a B2B brand and marketing consultancy I run with my brother Ed; I chair a [Vistage](https://vistage.com) group of business leaders; and I work with a small number of US and UK companies as a strategy consultant, fractional CMO, and coach. Along the way I picked up an executive education at Stanford's Graduate School of Business, which still shapes how I think about strategy.
+I've spent the last twenty years building businesses and helping other people build theirs. Most of that help now goes one way: getting specialised B2B companies out of the trap of being chosen on price. The word I use for it is decommoditisation, and I do most of it in manufacturing and technology. In practice it's three jobs: I'm the CEO of [Switch](https://switch.com.mt), a B2B brand and marketing consultancy I run with my brother Ed; I chair a [Vistage](https://vistage.com) group of business leaders; and I work with a small number of US and UK companies as a strategy consultant and fractional CMO. Along the way I picked up an executive education at Stanford's Graduate School of Business, which still shapes how I think about strategy.
 
 The thread running through all of it is a simple belief: growth and kindness are not a trade-off. The best businesses I've worked with grow *because* of how they treat their people and the world around them, not in spite of it. One of my goals in life is to prove that, repeatedly.
 
@@ -36,5 +36,9 @@ I write about marketing, strategy, and what it actually takes to run a good busi
 
 ## After the intro
 
-The list of published essays (pulled automatically from content/essays), then
-the newsletter box and footer (their text lives in content/pages/site.md).
+The commodities essay ("How good businesses become commodities (and how they
+stop)") sits pinned above the list under a START HERE label, using its own
+description from content/essays/commodities.md. Below that, the chronological
+list of the remaining published essays (pulled automatically from
+content/essays), then the newsletter box and footer (their text lives in
+content/pages/site.md).
