@@ -23,6 +23,8 @@ Alongside Switch:
 
 <!-- PHOTO: the Porto speaking shot now sits at the TOP beside the intro paragraphs, homepage-style -->
 
+What clients seem to value most, after the strategy work itself, is stubbornness and reach. I stay with a problem until it moves. And two decades of building businesses across the US, the UK, and Europe means I usually know someone who has already solved whatever you're facing: a Vistage chair, an ICOM agency on the right continent, a specialist I can put in a room with you within the week.
+
 Mentoring is the thread through all of it. Beyond the formal work, I regularly help people around me start and build businesses of their own, sustainably.
 
 Away from work, I live in Gozo with my wife Sarah - who's an amazingly talented artist across many mediums but focuses on embroidery with [The Secret Rose](https://www.instagram.com/the_secret_rose/). We're slowly (oh so slowly) rebuilding and renovating a 400-year-old farmhouse. I write, I hike, I run (very slow marathons included; I train for them regularly, with mixed grace), and I shoot street and architecture photography. I read a lot of philosophy, with a soft spot for the existentialists and the Stoics, though I'll make the case for the Epicureans and even the hedonists over a glass of wine. One of my favourite conversations is how we can collectively choose better, consume better, and leave things better than we found them.

@@ -20,6 +20,8 @@ Growth and **kindness** are not a trade-off.
 
 Richard Muscat Azzopardi
 
+Decommoditisation and growth for specialised B2B businesses (small mono line under the name; chrome, no colour)
+
 ## Intro (beside your portrait)
 
 Hi, I'm Rik.
@@ -31,6 +33,8 @@ The thread running through all of it is a simple belief: growth and kindness are
 <!-- Note: the paragraph above repeats the thesis line on purpose — the hero
 states it, this paragraph explains it (the manifesto move). If the echo bothers
 you, reword the opening clause here and tell Claude. -->
+
+Two things tend to keep clients around longer than any deliverable. I don't leave a problem until it moves, and I bring my address book with me: twenty years of building businesses has filled it with Vistage members and chairs, the independent agencies of ICOM's worldwide network, and the CFOs I coach across the US. Part of the job, as I see it, is knowing who to call.
 
 I write about marketing, strategy, and what it actually takes to run a good business over in [Writing](/writing). If you'd like to get in touch, [here's how](/contact).
 
